@@ -1,0 +1,16 @@
+# Python
+mock-api/.venv/
+mock-api/__pycache__/
+*.pyc
+
+# Java/Maven
+agent/target/
+*.class
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# OS
+.DS_Store
