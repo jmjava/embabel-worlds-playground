@@ -1,0 +1,90 @@
+types:
+  Category:
+    description: "A product category with rating priorities"
+    properties:
+      id: { type: string, required: true }
+      name: { type: string, required: true }
+      icon: { type: string }
+      priorities: { type: "string[]", description: "Sub-score dimensions for this category" }
+    userAnchor: false
+
+  Product:
+    description: "A product with pricing"
+    properties:
+      id: { type: string, required: true }
+      name: { type: string, required: true }
+      brand: { type: string, required: true }
+      model: { type: string }
+      price: { type: number, required: true }
+      imageUrl: { type: string }
+    relations:
+      - target: Category
+        name: IN_CATEGORY
+        cardinality: many-to-one
+    userAnchor: false
+
+  Rating:
+    description: "Consumer Reports rating for a product"
+    properties:
+      overallScore: { type: integer, required: true, description: "0-100 overall score" }
+      pros: { type: "string[]", description: "Positive aspects" }
+      cons: { type: "string[]", description: "Negative aspects" }
+      verdict: { type: string, description: "One-sentence CR verdict" }
+    relations:
+      - target: Product
+        name: RATES
+        cardinality: one-to-one
+    userAnchor: false
+
+  SubScore:
+    description: "A sub-dimension score for a rating"
+    properties:
+      dimension: { type: string, required: true, description: "e.g. reliability, noise_level" }
+      score: { type: integer, required: true, description: "0-100" }
+    relations:
+      - target: Rating
+        name: PART_OF
+        cardinality: many-to-one
+    userAnchor: false
+
+  PriceEntry:
+    description: "A historical price point"
+    properties:
+      date: { type: string, required: true }
+      price: { type: number, required: true }
+      retailer: { type: string }
+    relations:
+      - target: Product
+        name: PRICE_FOR
+        cardinality: many-to-one
+    userAnchor: false
+
+  BuyingIntent:
+    description: "A user's buying intent, created per session"
+    properties:
+      category: { type: string, required: true }
+      maxBudget: { type: number }
+      priorities: { type: "string[]" }
+      requirements: { type: string }
+    userAnchor: true
+
+  BuyingPlan:
+    description: "Generated buying plan with recommendations"
+    properties:
+      reasoning: { type: string, required: true }
+      comparisonSummary: { type: string }
+      timingAdvice: { type: string }
+    relations:
+      - target: BuyingIntent
+        name: PLAN_FOR
+        cardinality: one-to-one
+      - target: Product
+        name: TOP_PICK
+        cardinality: many-to-one
+      - target: Product
+        name: RUNNER_UP
+        cardinality: many-to-one
+      - target: Product
+        name: BUDGET_PICK
+        cardinality: many-to-one
+    userAnchor: true

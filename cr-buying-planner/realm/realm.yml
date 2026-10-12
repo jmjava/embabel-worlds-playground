@@ -1,0 +1,10 @@
+name: realm-consumer-reports
+version: 0.1.0
+author: jmjava
+category: shopping
+tags: [consumer-reports, buying-planner, product-ratings]
+description: Consumer Reports product ratings and buying recommendations
+exports:
+  types: true
+  apis: true
+  views: true

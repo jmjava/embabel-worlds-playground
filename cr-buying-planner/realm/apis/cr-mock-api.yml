@@ -1,0 +1,13 @@
+apis:
+  cr-ratings:
+    description: "Consumer Reports mock ratings API"
+    url: http://localhost:8900
+    spec: openapi
+    auth: none
+    operations:
+      - listCategories
+      - listProductsInCategory
+      - getProduct
+      - getProductPriceHistory
+      - compareProducts
+      - searchProducts
