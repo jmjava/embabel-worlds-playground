@@ -7,3 +7,8 @@ cr-api:
 spring:
   application:
     name: cr-buying-planner
+
+embabel:
+  agent:
+    cors:
+      allowed-origins: "http://localhost:8901"

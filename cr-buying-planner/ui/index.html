@@ -14,8 +14,16 @@
         <span class="logo-text">Buying Planner</span>
       </div>
       <nav id="breadcrumb" class="breadcrumb" aria-label="Progress"></nav>
+      <label class="agent-toggle" title="Enable AI agent (requires agent running on :8080 with OPENAI_API_KEY)">
+        <input type="checkbox" id="agent-toggle-cb">
+        <span class="agent-toggle-slider"></span>
+        <span class="agent-toggle-label">Use AI Agent</span>
+      </label>
     </div>
   </header>
+
+  <!-- Toast for notifications -->
+  <div id="toast" class="toast hidden"></div>
 
   <main id="app">
     <!-- Screen 1: Category Picker -->

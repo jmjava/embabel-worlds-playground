@@ -1,6 +1,12 @@
 /* CR Buying Planner — click-through demo (vanilla JS) */
 
-const API = "http://localhost:8900";
+const CONFIG = {
+  MOCK_API: "http://localhost:8900",
+  AGENT_API: "http://localhost:8080",
+  USE_AGENT: false, // set to true when agent is running with an LLM key
+};
+
+const API = CONFIG.MOCK_API;
 
 const EMOJI_MAP = {
   "washing-machines": "🧺",
@@ -388,12 +394,98 @@ function renderCompare() {
   table.innerHTML = rows;
 }
 
-document.getElementById("plan-btn").addEventListener("click", () => {
-  generatePlan();
-  goTo(5);
+// ── Agent toggle ─────────────────────────────────────────────────
+
+const agentToggle = document.getElementById("agent-toggle-cb");
+agentToggle.checked = CONFIG.USE_AGENT;
+agentToggle.addEventListener("change", (e) => {
+  CONFIG.USE_AGENT = e.target.checked;
 });
 
-// ── Screen 5: Buying Plan (client-side) ──────────────────────────
+function showToast(message, durationMs = 4000) {
+  const toast = document.getElementById("toast");
+  toast.textContent = message;
+  toast.classList.remove("hidden");
+  clearTimeout(toast._timer);
+  toast._timer = setTimeout(() => toast.classList.add("hidden"), durationMs);
+}
+
+async function generatePlanViaAgent(intent) {
+  const response = await fetch(`${CONFIG.AGENT_API}/api/v1/buying-plan`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      content:
+        `I'm looking for a ${intent.category} with a budget of $${intent.maxBudget}. ` +
+        `My priorities are: ${intent.priorities.join(", ")}. ${intent.requirements}`,
+    }),
+  });
+  if (!response.ok) throw new Error("Agent unavailable");
+  return response.json();
+}
+
+function renderAgentPlan(plan) {
+  let html = "";
+
+  const renderPick = (pick, label, cardClass, badgeClass) => {
+    if (!pick) return "";
+    const sc = pick.overallScore || 0;
+    return `
+    <div class="pick-card ${cardClass}">
+      <div class="score-badge ${scoreClass(sc)}" style="font-size:1.2rem;width:60px;height:60px;">${sc}</div>
+      <div class="pick-body">
+        <span class="pick-badge ${badgeClass}">${label}</span>
+        <div class="name">${pick.name || ""}</div>
+        <div class="meta">${pick.brand || ""} · ${fmt(pick.price || 0)}</div>
+        <div class="reason">${pick.matchExplanation || ""}</div>
+      </div>
+    </div>`;
+  };
+
+  html += renderPick(plan.topPick, "Top Pick", "top-pick", "top");
+  html += renderPick(plan.runnerUp, "Runner-Up", "runner-up", "runner");
+  html += renderPick(plan.budgetPick, "Budget Pick", "budget-pick", "budget");
+
+  if (plan.reasoning) {
+    html += `<div class="plan-section"><h3>Why This Pick</h3><p>${plan.reasoning}</p></div>`;
+  }
+  if (plan.comparisonSummary) {
+    html += `<div class="plan-section"><h3>Comparison Summary</h3><p style="white-space:pre-line">${plan.comparisonSummary}</p></div>`;
+  }
+  if (plan.timingAdvice) {
+    html += `<div class="plan-section"><h3>Timing Advice</h3><p>${plan.timingAdvice}</p></div>`;
+  }
+  if (plan.content) {
+    html += `<div class="plan-section"><h3>Summary</h3><p>${plan.content}</p></div>`;
+  }
+
+  return html;
+}
+
+// ── Screen 5: Buying Plan ────────────────────────────────────────
+
+document.getElementById("plan-btn").addEventListener("click", async () => {
+  goTo(5);
+  if (CONFIG.USE_AGENT) {
+    document.getElementById("plan-content").innerHTML =
+      '<p style="color:var(--cr-text-light)">⏳ Asking the AI agent for a buying plan…</p>';
+    try {
+      const intent = {
+        category: state.selectedCategory ? state.selectedCategory.id : "",
+        maxBudget: state.budget,
+        priorities: state.priorities,
+        requirements: document.getElementById("extra-input").value || "",
+      };
+      const plan = await generatePlanViaAgent(intent);
+      document.getElementById("plan-content").innerHTML = renderAgentPlan(plan);
+    } catch {
+      showToast("Agent unavailable, using local ranking");
+      generatePlan();
+    }
+  } else {
+    generatePlan();
+  }
+});
 
 function generatePlan() {
   const products = (state.compareData && state.compareData.products) || [];

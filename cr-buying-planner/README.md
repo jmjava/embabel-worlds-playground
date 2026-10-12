@@ -107,10 +107,74 @@ The realm defines **8 types** connected by graph relationships:
 
 ## Next Steps
 
-- **Install Worlds appliance** and register `realm-consumer-reports` with `worlds install realm/`
-- **Register the realm** to get types, views, and producers live in the knowledge graph
 - **Cross-realm queries** — combine CR ratings with other realms (e.g. warranty data, retailer inventory)
 - **Add more categories** — extend `seed.json` with TVs, refrigerators, headphones, etc.
 - **Real CR API integration** — swap the mock API for an authenticated Consumer Reports data feed
-- **Agent UI integration** — connect the browser UI to the live Embabel agent instead of static click-through
 - **Price alert producer** — add a producer that monitors price drops and notifies users
+
+## Running with the AI Agent
+
+The BuyingPlannerAgent uses an LLM (via OpenAI) to understand your request, score products against your priorities, and generate a personalised buying plan.
+
+**Prerequisites:** JDK 21, Maven, `OPENAI_API_KEY`
+
+```bash
+# Set your OpenAI key
+export OPENAI_API_KEY=sk-...
+
+# Run everything (mock API + agent + UI)
+bash run-demo.sh --with-agent
+```
+
+When the agent is running, flip the **"Use AI Agent"** toggle in the top-right corner of the UI. The Buying Plan screen (step 5) will POST to the agent instead of computing a plan client-side. If the agent is unreachable, the UI falls back gracefully to local ranking with a toast notification.
+
+**Without the agent** (default): `bash run-demo.sh` starts only the mock API and UI. The plan screen uses client-side scoring and ranking — no LLM required.
+
+### Agent REST Endpoint
+
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/api/v1/buying-plan` | POST | Generate a buying plan via the Embabel agent |
+
+Request body:
+```json
+{
+  "content": "I'm looking for a laptop under $1500, prioritising battery life and portability"
+}
+```
+
+Response: a `BuyingPlan` JSON with `topPick`, `runnerUp`, `budgetPick`, `reasoning`, `comparisonSummary`, `timingAdvice`, and `content`.
+
+> **Note:** The controller uses `AgentPlatform.runProcess()` to invoke the agent. If the exact Embabel API signature differs from the version you have, adjust the `BuyingPlannerController.kt` invocation accordingly — the pattern (accept `UserInput`, produce `BuyingPlan`) is stable.
+
+## Worlds Integration
+
+The `realm/` directory contains the complete **`realm-consumer-reports`** spec ready for the Embabel Worlds appliance.
+
+### Current Status
+
+| Component | Status |
+|-----------|--------|
+| Realm YAML spec (`realm.yml`, types, apis, views, producers) | ✅ Complete |
+| Embabel Worlds appliance installed (`~/embabel/worlds`) | ✅ Installed |
+| Appliance running (`embabel up`) | ⏳ Requires interactive setup (account + API key) |
+| Realm registered | ⏳ Pending — run after appliance setup |
+
+### Setup Steps
+
+```bash
+# 1. Start the appliance (interactive — asks for account + API key)
+embabel up
+
+# 2. Link your realm checkouts
+embabel realms link /path/to/embabel-worlds-playground/cr-buying-planner
+
+# 3. Open the console
+embabel open     # → http://localhost:4343
+```
+
+Once the appliance is running, the realm types, views, and producers become live in the knowledge graph. The mock API products are ingested via the declared API connection.
+
+### What Works Without the Appliance
+
+Everything except realm registration: the mock API, the agent, and the UI all run standalone. The realm spec is a ready-to-install artifact — it adds graph persistence, cross-realm queries, and the Worlds console views on top of the existing demo.
