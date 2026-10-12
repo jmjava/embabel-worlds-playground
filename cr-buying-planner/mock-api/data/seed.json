@@ -1,0 +1,717 @@
+{
+  "categories": [
+    {
+      "id": "washing-machines",
+      "name": "Washing Machines",
+      "icon": "🫧",
+      "priorities": ["reliability", "noise_level", "energy_efficiency", "washing_performance", "value"]
+    },
+    {
+      "id": "laptops",
+      "name": "Laptops",
+      "icon": "💻",
+      "priorities": ["performance", "battery_life", "display_quality", "build_quality", "value"]
+    },
+    {
+      "id": "mattresses",
+      "name": "Mattresses",
+      "icon": "🛏️",
+      "priorities": ["comfort", "support", "durability", "temperature_regulation", "value"]
+    }
+  ],
+
+  "products": [
+    {"id": 1,  "name": "WF45R6100AW Front-Load Washer",          "brand": "Samsung",     "model": "WF45R6100AW",  "category_id": "washing-machines", "price": 749.00,  "image_url": "https://placehold.co/400x400?text=Samsung+WF45R"},
+    {"id": 2,  "name": "WM4000HWA Smart Wi-Fi Front-Load Washer", "brand": "LG",          "model": "WM4000HWA",    "category_id": "washing-machines", "price": 899.00,  "image_url": "https://placehold.co/400x400?text=LG+WM4000"},
+    {"id": 3,  "name": "WTW5000DW Top-Load Washer",               "brand": "Whirlpool",   "model": "WTW5000DW",    "category_id": "washing-machines", "price": 599.00,  "image_url": "https://placehold.co/400x400?text=Whirlpool+WTW5000"},
+    {"id": 4,  "name": "MVW7230HW Smart Top-Load Washer",         "brand": "Maytag",      "model": "MVW7230HW",    "category_id": "washing-machines", "price": 1049.00, "image_url": "https://placehold.co/400x400?text=Maytag+MVW7230"},
+    {"id": 5,  "name": "GFW850SSNWW UltraFresh Front-Load",       "brand": "GE",          "model": "GFW850SSNWW",  "category_id": "washing-machines", "price": 1099.00, "image_url": "https://placehold.co/400x400?text=GE+GFW850"},
+    {"id": 6,  "name": "WAW285H2UC 500 Series Front-Load",        "brand": "Bosch",       "model": "WAW285H2UC",   "category_id": "washing-machines", "price": 1249.00, "image_url": "https://placehold.co/400x400?text=Bosch+500"},
+    {"id": 7,  "name": "EFLS627UTT Front-Load Washer",            "brand": "Electrolux",  "model": "EFLS627UTT",   "category_id": "washing-machines", "price": 1149.00, "image_url": "https://placehold.co/400x400?text=Electrolux+EFLS627"},
+    {"id": 8,  "name": "WTW4816FW Top-Load Washer",               "brand": "Whirlpool",   "model": "WTW4816FW",    "category_id": "washing-machines", "price": 529.00,  "image_url": "https://placehold.co/400x400?text=Whirlpool+4816"},
+    {"id": 9,  "name": "WF45T6000AW Front-Load Washer",           "brand": "Samsung",     "model": "WF45T6000AW",  "category_id": "washing-machines", "price": 649.00,  "image_url": "https://placehold.co/400x400?text=Samsung+WF45T"},
+    {"id": 10, "name": "WM3600HWA ThinQ Front-Load",              "brand": "LG",          "model": "WM3600HWA",    "category_id": "washing-machines", "price": 799.00,  "image_url": "https://placehold.co/400x400?text=LG+WM3600"},
+    {"id": 11, "name": "MHW5630HW Front-Load Washer",             "brand": "Maytag",      "model": "MHW5630HW",    "category_id": "washing-machines", "price": 949.00,  "image_url": "https://placehold.co/400x400?text=Maytag+MHW5630"},
+    {"id": 12, "name": "GTW465ASNWW Top-Load Washer",             "brand": "GE",          "model": "GTW465ASNWW",  "category_id": "washing-machines", "price": 549.00,  "image_url": "https://placehold.co/400x400?text=GE+GTW465"},
+
+    {"id": 101, "name": "MacBook Air 15\" M3",                  "brand": "Apple",     "model": "MXCQ3LL/A",      "category_id": "laptops", "price": 1299.00, "image_url": "https://placehold.co/400x400?text=MacBook+Air+15"},
+    {"id": 102, "name": "MacBook Pro 14\" M3 Pro",              "brand": "Apple",     "model": "MRX33LL/A",      "category_id": "laptops", "price": 1999.00, "image_url": "https://placehold.co/400x400?text=MacBook+Pro+14"},
+    {"id": 103, "name": "XPS 15 9530",                          "brand": "Dell",      "model": "9530",           "category_id": "laptops", "price": 1449.00, "image_url": "https://placehold.co/400x400?text=Dell+XPS+15"},
+    {"id": 104, "name": "ThinkPad X1 Carbon Gen 11",            "brand": "Lenovo",    "model": "21HM004JUS",     "category_id": "laptops", "price": 1349.00, "image_url": "https://placehold.co/400x400?text=ThinkPad+X1"},
+    {"id": 105, "name": "Spectre x360 16",                      "brand": "HP",        "model": "16-aa0023dx",    "category_id": "laptops", "price": 1599.00, "image_url": "https://placehold.co/400x400?text=HP+Spectre+x360"},
+    {"id": 106, "name": "Zenbook 14 OLED",                      "brand": "ASUS",      "model": "UX3405MA",       "category_id": "laptops", "price": 899.00,  "image_url": "https://placehold.co/400x400?text=ASUS+Zenbook+14"},
+    {"id": 107, "name": "Swift Go 14",                          "brand": "Acer",      "model": "SFG14-73-79KQ",  "category_id": "laptops", "price": 749.00,  "image_url": "https://placehold.co/400x400?text=Acer+Swift+Go"},
+    {"id": 108, "name": "Framework Laptop 16",                  "brand": "Framework", "model": "FL16-RYZEN7",    "category_id": "laptops", "price": 1399.00, "image_url": "https://placehold.co/400x400?text=Framework+16"},
+    {"id": 109, "name": "IdeaPad Slim 5 16",                    "brand": "Lenovo",    "model": "83DC0005US",     "category_id": "laptops", "price": 649.00,  "image_url": "https://placehold.co/400x400?text=Lenovo+IdeaPad"},
+    {"id": 110, "name": "Pavilion Plus 14",                     "brand": "HP",        "model": "14-ew1023dx",    "category_id": "laptops", "price": 799.00,  "image_url": "https://placehold.co/400x400?text=HP+Pavilion+Plus"},
+    {"id": 111, "name": "Inspiron 16 Plus",                     "brand": "Dell",      "model": "7640",           "category_id": "laptops", "price": 1099.00, "image_url": "https://placehold.co/400x400?text=Dell+Inspiron+16"},
+    {"id": 112, "name": "Vivobook Pro 15 OLED",                 "brand": "ASUS",      "model": "K6502VU",        "category_id": "laptops", "price": 1199.00, "image_url": "https://placehold.co/400x400?text=ASUS+Vivobook+Pro"},
+
+    {"id": 201, "name": "Purple Hybrid Premier 4",              "brand": "Purple",       "model": "Premier 4",         "category_id": "mattresses", "price": 2999.00, "image_url": "https://placehold.co/400x400?text=Purple+Premier+4"},
+    {"id": 202, "name": "Casper Original Hybrid",               "brand": "Casper",       "model": "Original Hybrid",   "category_id": "mattresses", "price": 1295.00, "image_url": "https://placehold.co/400x400?text=Casper+Original"},
+    {"id": 203, "name": "TEMPUR-Adapt Medium Hybrid",           "brand": "Tempur-Pedic", "model": "Adapt Medium",      "category_id": "mattresses", "price": 2199.00, "image_url": "https://placehold.co/400x400?text=TempurPedic+Adapt"},
+    {"id": 204, "name": "Saatva Classic (Luxury Firm)",          "brand": "Saatva",       "model": "Classic LF",        "category_id": "mattresses", "price": 1795.00, "image_url": "https://placehold.co/400x400?text=Saatva+Classic"},
+    {"id": 205, "name": "Nectar Premier",                       "brand": "Nectar",       "model": "Premier",           "category_id": "mattresses", "price": 1049.00, "image_url": "https://placehold.co/400x400?text=Nectar+Premier"},
+    {"id": 206, "name": "Sleep Number i8 Smart Bed",            "brand": "Sleep Number", "model": "i8",                "category_id": "mattresses", "price": 2799.00, "image_url": "https://placehold.co/400x400?text=SleepNumber+i8"},
+    {"id": 207, "name": "Casper Wave Hybrid Snow",              "brand": "Casper",       "model": "Wave Snow",         "category_id": "mattresses", "price": 2495.00, "image_url": "https://placehold.co/400x400?text=Casper+Wave+Snow"},
+    {"id": 208, "name": "Nectar Original Memory Foam",          "brand": "Nectar",       "model": "Original",          "category_id": "mattresses", "price": 849.00,  "image_url": "https://placehold.co/400x400?text=Nectar+Original"},
+    {"id": 209, "name": "Purple Original",                      "brand": "Purple",       "model": "Original",          "category_id": "mattresses", "price": 1299.00, "image_url": "https://placehold.co/400x400?text=Purple+Original"},
+    {"id": 210, "name": "Saatva Loom & Leaf",                   "brand": "Saatva",       "model": "Loom & Leaf",       "category_id": "mattresses", "price": 1595.00, "image_url": "https://placehold.co/400x400?text=Saatva+Loom"}
+  ],
+
+  "ratings": [
+    {
+      "product_id": 1,
+      "overall_score": 78,
+      "sub_scores": {"reliability": 80, "noise_level": 72, "energy_efficiency": 82, "washing_performance": 79, "value": 77},
+      "pros": ["Excellent stain removal on normal cycle", "Steam option handles pet hair well", "Self-cleaning drum cycle actually works"],
+      "cons": ["Control panel feels flimsy after a year", "No internal water heater—relies on your home's hot water", "Door seal requires monthly cleaning to avoid mildew"],
+      "cr_verdict": "A solid mid-range pick that cleans well but demands a little upkeep."
+    },
+    {
+      "product_id": 2,
+      "overall_score": 85,
+      "sub_scores": {"reliability": 88, "noise_level": 90, "energy_efficiency": 84, "washing_performance": 83, "value": 80},
+      "pros": ["Remarkably quiet even on the 1200-rpm spin cycle", "ThinQ app lets you start loads remotely", "Allergen cycle hits 150 °F for dust-mite concerns"],
+      "cons": ["Wi-Fi setup is clunky—expect 15 minutes", "Detergent dispenser drawer jams if you overfill", "Cycle times on Normal run about 58 minutes"],
+      "cr_verdict": "The quietest front-loader we tested, and smart features that actually add convenience."
+    },
+    {
+      "product_id": 3,
+      "overall_score": 62,
+      "sub_scores": {"reliability": 70, "noise_level": 48, "energy_efficiency": 55, "washing_performance": 68, "value": 82},
+      "pros": ["Simple controls anyone can learn in five minutes", "Deep-water wash option for heavily soiled loads", "Very affordable for a name-brand washer"],
+      "cons": ["Loud agitator rattle during spin—can hear it upstairs", "Uses 20% more water than comparable front-loaders", "No steam or sanitize cycle at this price point"],
+      "cr_verdict": "Budget-friendly and easy to use, but the noise and water usage are hard to ignore."
+    },
+    {
+      "product_id": 4,
+      "overall_score": 74,
+      "sub_scores": {"reliability": 76, "noise_level": 65, "energy_efficiency": 70, "washing_performance": 82, "value": 68},
+      "pros": ["Extra Power button boosts stain fighting without a full heavy cycle", "Built-in faucet for pre-treating stains at the machine", "Robust metal body feels built to last a decade"],
+      "cons": ["Priced high for a top-loader without advanced smart features", "Energy Star rated, but still uses more energy than front-loaders in its class", "Matching dryer sold separately at a steep price"],
+      "cr_verdict": "Excellent at getting clothes clean, but you pay a premium for that top-load convenience."
+    },
+    {
+      "product_id": 5,
+      "overall_score": 82,
+      "sub_scores": {"reliability": 79, "noise_level": 81, "energy_efficiency": 88, "washing_performance": 85, "value": 72},
+      "pros": ["Microban antimicrobial technology on the gasket actually reduces odor", "OdorBlock door venting keeps the drum fresh between loads", "Handles bulky comforters without unbalancing"],
+      "cons": ["Pricey at over $1,000 for the washer alone", "Smart diagnostics require the SmartHQ app—no local controls for error codes", "Some users report the UltraFresh vent fan is audible at night"],
+      "cr_verdict": "Tackles the front-loader smell problem better than any rival, and cleans beautifully to boot."
+    },
+    {
+      "product_id": 6,
+      "overall_score": 88,
+      "sub_scores": {"reliability": 92, "noise_level": 95, "energy_efficiency": 86, "washing_performance": 84, "value": 65},
+      "pros": ["Near-silent operation—you can stand next to it during spin and hold a conversation", "Compact 24-inch width fits European-style laundry closets", "German engineering shows in build quality—stainless drum, no plastic tub"],
+      "cons": ["Significantly more expensive than full-size competitors", "Smaller 2.2 cu ft capacity means more loads for a family of four", "No steam option at this price is a disappointment"],
+      "cr_verdict": "The gold standard for quiet, reliable washing—if you can live with the small drum and big price."
+    },
+    {
+      "product_id": 7,
+      "overall_score": 80,
+      "sub_scores": {"reliability": 75, "noise_level": 78, "energy_efficiency": 83, "washing_performance": 86, "value": 73},
+      "pros": ["SmartBoost premixes detergent and water before the cycle for better cleaning", "Luxurious stainless-steel drum feels premium", "15-minute fast wash is genuinely useful for lightly worn items"],
+      "cons": ["Reliability track record is mixed—some early sensor failures reported", "Touch controls can be unresponsive with wet fingers", "No matching pedestal drawer from Electrolux fits this specific model year"],
+      "cr_verdict": "Cleans as well as machines costing $200 more, but long-term durability is a question mark."
+    },
+    {
+      "product_id": 8,
+      "overall_score": 55,
+      "sub_scores": {"reliability": 60, "noise_level": 42, "energy_efficiency": 50, "washing_performance": 58, "value": 75},
+      "pros": ["Rock-bottom price for a Whirlpool-branded machine", "Straightforward dial controls—nothing to break", "Fits through narrow doorways at 27 inches wide"],
+      "cons": ["Agitator is harsh on delicates—expect pilling on knits", "No temperature control beyond hot/cold/warm presets", "Spin cycle vibration can walk the machine across the floor"],
+      "cr_verdict": "You get what you pay for: basic cleaning at a basement price, with noise and roughness to match."
+    },
+    {
+      "product_id": 9,
+      "overall_score": 71,
+      "sub_scores": {"reliability": 74, "noise_level": 68, "energy_efficiency": 76, "washing_performance": 72, "value": 80},
+      "pros": ["Self Clean+ reminder keeps the drum fresh", "Shallow depth fits in tighter laundry spaces", "Good value for a Samsung front-loader"],
+      "cons": ["Lacks the steam cycle found on pricier Samsung models", "VRT Plus vibration reduction is adequate but not best-in-class", "Plasticky door handle feels cheaper than the competition"],
+      "cr_verdict": "A sensible value play if you want a front-loader without the $900+ price tags."
+    },
+    {
+      "product_id": 10,
+      "overall_score": 76,
+      "sub_scores": {"reliability": 82, "noise_level": 80, "energy_efficiency": 78, "washing_performance": 73, "value": 74},
+      "pros": ["LoDecibel motor keeps noise under 48 dB even at max spin", "ColdWash technology cleans well in cold water, saving energy", "5-year warranty on the direct-drive motor"],
+      "cons": ["TurboWash 360 is only on higher-end models—this one lacks it", "Normal cycle runs over an hour", "No built-in water heater for sanitize-level temps"],
+      "cr_verdict": "Quiet and energy-efficient with a strong warranty, but not LG's best performer."
+    },
+    {
+      "product_id": 11,
+      "overall_score": 73,
+      "sub_scores": {"reliability": 78, "noise_level": 62, "energy_efficiency": 72, "washing_performance": 80, "value": 70},
+      "pros": ["Extra Power button genuinely improves stain removal", "12-hour Fresh Hold option tumbles clothes periodically to prevent wrinkles", "Robust metal construction throughout"],
+      "cons": ["Noisier than competing front-loaders in this price range", "Fresh Hold fan adds to the electric bill if used often", "Control panel layout is unintuitive—cycle options are buried in menus"],
+      "cr_verdict": "Maytag durability with decent cleaning chops, but rivals are quieter for the same money."
+    },
+    {
+      "product_id": 12,
+      "overall_score": 58,
+      "sub_scores": {"reliability": 62, "noise_level": 50, "energy_efficiency": 53, "washing_performance": 60, "value": 78},
+      "pros": ["Affordable entry point for a GE-branded washer", "Deep Fill option lets you add extra water for bulky items", "Stainless steel wash basket resists chipping"],
+      "cons": ["No agitator alternative—stuck with the old-school post design", "Lacks any smart or connected features", "Spin extraction is weak—clothes come out noticeably wetter than front-load rivals"],
+      "cr_verdict": "A bare-minimum washer that gets the job done, but barely—spend $100 more for a real upgrade."
+    },
+
+    {
+      "product_id": 101,
+      "overall_score": 89,
+      "sub_scores": {"performance": 82, "battery_life": 95, "display_quality": 88, "build_quality": 92, "value": 85},
+      "pros": ["18-hour real-world battery life redefines all-day computing", "Fanless design means absolute silence under typical workloads", "Brilliant Liquid Retina display with P3 wide color"],
+      "cons": ["Only 8 GB unified memory in the base config—can't be upgraded later", "720p FaceTime camera is embarrassingly behind the display quality", "Limited to one external display without workarounds"],
+      "cr_verdict": "The battery king of laptops with build quality to match—just spec the RAM right at purchase."
+    },
+    {
+      "product_id": 102,
+      "overall_score": 92,
+      "sub_scores": {"performance": 96, "battery_life": 88, "display_quality": 94, "build_quality": 95, "value": 72},
+      "pros": ["M3 Pro tears through video editing and compiling without breaking a sweat", "Mini-LED XDR display with 1600-nit HDR peak brightness", "Best-in-class speakers for a laptop—surprisingly deep bass"],
+      "cons": ["Starting at $1,999 puts it out of reach for most students", "Still no touchscreen after a decade of competitor offerings", "Notch in the display is an acquired taste"],
+      "cr_verdict": "The best all-around laptop money can buy—if your budget stretches to two grand."
+    },
+    {
+      "product_id": 103,
+      "overall_score": 81,
+      "sub_scores": {"performance": 85, "battery_life": 68, "display_quality": 90, "build_quality": 82, "value": 74},
+      "pros": ["Stunning 3.5K OLED display with perfect blacks", "Excellent keyboard with 1.3mm travel feels substantial", "Compact footprint for a 15-inch laptop"],
+      "cons": ["Battery barely lasts 7 hours under mixed use", "Webcam placement below the display gives an unflattering up-nose angle", "Coil whine audible under heavy CPU load on some units"],
+      "cr_verdict": "Gorgeous OLED screen and strong performance, but plan to carry your charger."
+    },
+    {
+      "product_id": 104,
+      "overall_score": 84,
+      "sub_scores": {"performance": 78, "battery_life": 82, "display_quality": 80, "build_quality": 94, "value": 76},
+      "pros": ["MIL-STD-810H tested—survives drops, extreme temps, and vibration", "Legendary keyboard with perfectly weighted keys", "TrackPoint nub plus touchpad gives two pointing options"],
+      "cons": ["Display is decent but not class-leading in brightness or color", "13th-gen Intel runs warm and throttles under sustained loads", "At 2.48 lbs it's light, but the charger adds another pound"],
+      "cr_verdict": "The business laptop benchmark: indestructible build and the best keyboard in the industry."
+    },
+    {
+      "product_id": 105,
+      "overall_score": 77,
+      "sub_scores": {"performance": 80, "battery_life": 71, "display_quality": 86, "build_quality": 78, "value": 68},
+      "pros": ["16-inch 3K OLED touchscreen is gorgeous for creative work", "360-degree hinge turns it into a large drawing tablet", "9 MP webcam with IR is the best we've tested for video calls"],
+      "cons": ["Heavy at 4.45 lbs—not fun as a tablet for more than 10 minutes", "Fan noise under load sounds like a hair dryer on low", "Pen is sold separately at $130 on a $1,600 machine"],
+      "cr_verdict": "A beautiful 2-in-1 hampered by weight and fan noise—great for desk use, less so for the couch."
+    },
+    {
+      "product_id": 106,
+      "overall_score": 83,
+      "sub_scores": {"performance": 76, "battery_life": 80, "display_quality": 92, "build_quality": 80, "value": 88},
+      "pros": ["14-inch 2.8K OLED display is color-accurate out of the box", "Under $900 for this display quality is remarkable", "Slim 1.2 kg chassis slips into any bag"],
+      "cons": ["Plastic bottom panel flexes more than we'd like at this price", "Speakers are tinny and lack bass—budget headphones recommended", "Only 512 GB SSD in the base model; upgradeable but voiding warranty seals"],
+      "cr_verdict": "The best display-per-dollar in our test group—an outstanding value if audio isn't a priority."
+    },
+    {
+      "product_id": 107,
+      "overall_score": 68,
+      "sub_scores": {"performance": 65, "battery_life": 72, "display_quality": 64, "build_quality": 62, "value": 82},
+      "pros": ["Lightweight at 2.87 lbs for a 14-inch machine", "Affordable entry price under $750", "Fingerprint reader integrated into the power button"],
+      "cons": ["Display is a dim 300-nit IPS panel—unusable in direct sunlight", "Keyboard deck flexes under firm typing", "Webcam tops out at 1080p but image processing is mushy"],
+      "cr_verdict": "A competent budget traveler, but cut corners on the display and chassis are hard to overlook."
+    },
+    {
+      "product_id": 108,
+      "overall_score": 79,
+      "sub_scores": {"performance": 84, "battery_life": 62, "display_quality": 78, "build_quality": 85, "value": 75},
+      "pros": ["Every component is user-replaceable—RAM, SSD, GPU module, even the bezel", "Ryzen 7 7840HS delivers strong multi-threaded performance", "Expansion bay accepts a dedicated GPU module"],
+      "cons": ["Battery life trails the competition by 2-3 hours", "At 5.3 lbs it's heavier than 16-inch rivals", "Assembly feel has minor panel gaps compared to mass-market flagships"],
+      "cr_verdict": "The most repairable laptop ever made—a statement buy for right-to-repair believers willing to trade some polish."
+    },
+    {
+      "product_id": 109,
+      "overall_score": 63,
+      "sub_scores": {"performance": 58, "battery_life": 70, "display_quality": 62, "build_quality": 55, "value": 85},
+      "pros": ["16-inch screen at a sub-$700 price is rare", "Decent Ryzen 5 performance for office and web use", "Surprisingly good touchpad for a budget machine"],
+      "cons": ["Plastic chassis creaks and flexes when picked up one-handed", "Display color accuracy is poor—don't edit photos on this", "Only 256 GB SSD in the base model fills up fast"],
+      "cr_verdict": "Lots of screen for the money, but the cheap build and tiny SSD cap its usefulness."
+    },
+    {
+      "product_id": 110,
+      "overall_score": 72,
+      "sub_scores": {"performance": 70, "battery_life": 74, "display_quality": 78, "build_quality": 68, "value": 76},
+      "pros": ["2.8K OLED option available under $900—unusual for HP's mainstream line", "Decent port selection with USB-A, USB-C, HDMI, and a headphone jack", "Runs cool under light workloads"],
+      "cons": ["Keyboard feels mushy compared to the Spectre line", "No Thunderbolt 4—USB-C is data and charging only", "HP's bloatware requires 30 minutes of cleanup out of the box"],
+      "cr_verdict": "A solid mid-tier option if you opt for the OLED panel, but HP's software baggage drags the experience."
+    },
+    {
+      "product_id": 111,
+      "overall_score": 75,
+      "sub_scores": {"performance": 80, "battery_life": 73, "display_quality": 76, "build_quality": 72, "value": 78},
+      "pros": ["13th-gen Intel H-series delivers strong performance for content creation", "16-inch 2.5K IPS display covers 100% sRGB", "Solid value with 16 GB RAM and 512 GB SSD at this price"],
+      "cons": ["Fan ramp-up under load is aggressive and distracting", "Webcam is only 720p—disappointing in 2024", "Chassis picks up fingerprints within minutes"],
+      "cr_verdict": "A capable mid-range workhorse that delivers on specs but not on refinement."
+    },
+    {
+      "product_id": 112,
+      "overall_score": 78,
+      "sub_scores": {"performance": 82, "battery_life": 65, "display_quality": 88, "build_quality": 74, "value": 76},
+      "pros": ["15.6-inch OLED display is cinema-quality for media consumption", "RTX 4050 handles casual gaming and GPU-accelerated creative work", "DialPad creative control is genuinely useful in Premiere and Photoshop"],
+      "cons": ["Battery drains in 5.5 hours—OLED and a dGPU are power-hungry", "Fan noise under GPU load can hit 45 dB", "Charger is bulky at 200W—not travel-friendly"],
+      "cr_verdict": "A creative semi-pro machine with a stunning OLED, but battery anxiety comes standard."
+    },
+
+    {
+      "product_id": 201,
+      "overall_score": 84,
+      "sub_scores": {"comfort": 90, "support": 88, "durability": 82, "temperature_regulation": 78, "value": 55},
+      "pros": ["GelFlex Grid uniquely cushions pressure points while staying supportive", "Virtually no motion transfer—partner won't feel you toss and turn", "Responsive enough for combination sleepers who switch positions"],
+      "cons": ["At $2,999 for a queen, it's a serious financial commitment", "Weighs 120 lbs—you will need help moving it", "Edge support is merely adequate—sitting on the side feels soft"],
+      "cr_verdict": "A genuinely innovative sleep surface that justifies some of its steep price—but not all of it."
+    },
+    {
+      "product_id": 202,
+      "overall_score": 74,
+      "sub_scores": {"comfort": 78, "support": 72, "durability": 70, "temperature_regulation": 72, "value": 80},
+      "pros": ["Zoned Support system firms up the center for back sleepers", "100-night trial is generous and the return process is painless", "AirScape foam layer breathes better than traditional memory foam"],
+      "cons": ["Develops body impressions after 18 months for heavier sleepers", "Comfort layer is on the thin side—stomach sleepers may bottom out", "Off-gassing smell lasts 3-4 days, stronger than competitors"],
+      "cr_verdict": "A good-not-great bed-in-a-box with a generous trial—solid for lighter sleepers, less so for 200+ lbs."
+    },
+    {
+      "product_id": 203,
+      "overall_score": 87,
+      "sub_scores": {"comfort": 92, "support": 90, "durability": 88, "temperature_regulation": 68, "value": 62},
+      "pros": ["TEMPUR material adapts to body shape better than any competitor foam", "Excellent spinal alignment—chiropractors consistently recommend this line", "Spring base adds a responsiveness that pure TEMPUR mattresses lack"],
+      "cons": ["Sleeps warm—the dense foam retains body heat despite the cover cooling claim", "Heavy at 85 lbs and difficult to rotate without two people", "Premium price with no trial period in-store (online orders get 90 days)"],
+      "cr_verdict": "The comfort and support benchmark for memory foam—just keep the bedroom cool."
+    },
+    {
+      "product_id": 204,
+      "overall_score": 86,
+      "sub_scores": {"comfort": 84, "support": 92, "durability": 90, "temperature_regulation": 82, "value": 78},
+      "pros": ["Dual coil layers (innerspring + micro-coils) deliver hotel-quality bounce and support", "Organic cotton cover and CertiPUR-US foams for chemical-conscious buyers", "Free white-glove delivery includes old mattress removal"],
+      "cons": ["Not available on Amazon or in most retail stores—online-only ordering", "Luxury Firm feel is polarizing—side sleepers may find it too firm", "Requires their proprietary foundation or a solid platform—no old box springs"],
+      "cr_verdict": "The best hybrid innerspring we tested: supportive, durable, and delivered with care."
+    },
+    {
+      "product_id": 205,
+      "overall_score": 70,
+      "sub_scores": {"comfort": 74, "support": 68, "durability": 64, "temperature_regulation": 70, "value": 88},
+      "pros": ["Under $1,100 for a queen with good initial comfort", "Gel memory foam layer sleeps cooler than basic memory foam", "365-night trial and forever warranty sweeten the deal"],
+      "cons": ["Foam density is on the low side—expect faster wear than premium brands", "Edge support collapses when sitting—not great for putting on shoes", "Off-gassing is noticeable for 4-5 days"],
+      "cr_verdict": "A tempting price and generous trial, but durability concerns mean you may use that warranty."
+    },
+    {
+      "product_id": 206,
+      "overall_score": 71,
+      "sub_scores": {"comfort": 76, "support": 80, "durability": 72, "temperature_regulation": 60, "value": 45},
+      "pros": ["Adjustable firmness on each side is perfect for couples who disagree", "SleepIQ app tracks sleep stages with surprising accuracy", "Responsive Air technology adjusts support as you shift positions"],
+      "cons": ["At $2,799 for a queen, the technology premium is enormous", "Air chambers can develop slow leaks after 3-5 years—costly repair", "Foam comfort layer traps heat worse than spring-based competitors"],
+      "cr_verdict": "Clever dual-firmness tech at a price that's hard to stomach—especially with reliability questions."
+    },
+    {
+      "product_id": 207,
+      "overall_score": 82,
+      "sub_scores": {"comfort": 88, "support": 84, "durability": 80, "temperature_regulation": 85, "value": 60},
+      "pros": ["Snow technology with Phase Change Material keeps the surface genuinely cool", "Ergonomic zoning provides extra lumbar support without feeling hard", "Among the best beds-in-a-box for back pain relief"],
+      "cons": ["$2,495 for a bed-in-a-box pushes into traditional luxury territory", "Heavy at 104 lbs—setup is a two-person job", "Foam layers can shift slightly during the first month of break-in"],
+      "cr_verdict": "If you run hot and have back pain, this is the mail-order mattress to beat—at a luxury price."
+    },
+    {
+      "product_id": 208,
+      "overall_score": 60,
+      "sub_scores": {"comfort": 65, "support": 58, "durability": 50, "temperature_regulation": 62, "value": 82},
+      "pros": ["Remarkably affordable at $849 for a queen memory-foam mattress", "365-night trial lets you test through all four seasons", "Arrives compressed and expands fully within 24 hours"],
+      "cons": ["Foam feels flat after 12-14 months for average-weight sleepers", "Minimal edge support—rolling near the side feels like you'll fall off", "Cover is not removable or washable"],
+      "cr_verdict": "A solid first apartment mattress, but expect to replace it in 3-4 years, not 10."
+    },
+    {
+      "product_id": 209,
+      "overall_score": 75,
+      "sub_scores": {"comfort": 80, "support": 76, "durability": 74, "temperature_regulation": 74, "value": 72},
+      "pros": ["GelFlex Grid provides a unique floating feeling most people love or hate", "Good motion isolation for a non-memory-foam bed", "Handles all sleeping positions decently without excelling at any one"],
+      "cons": ["Heavier sleepers (250+ lbs) may bottom through the grid to the foam below", "Off-gassing has a distinctive plasticky smell for the first week", "Return logistics require scheduling a pickup—no simple box return"],
+      "cr_verdict": "A fun, different feel at a reasonable price—try it in-store first, because you'll either love or hate the grid."
+    },
+    {
+      "product_id": 210,
+      "overall_score": 81,
+      "sub_scores": {"comfort": 86, "support": 82, "durability": 84, "temperature_regulation": 76, "value": 75},
+      "pros": ["5-lb memory foam is denser and more durable than most competitors", "Organic cotton quilted cover feels luxurious", "Excellent for side sleepers—deep contouring at shoulder and hip"],
+      "cons": ["Memory foam sinks slowly—repositioning at night takes effort", "Sleeps warmer than Saatva's innerspring Classic model", "No coil layer means less bounce—not ideal if you prefer a springy feel"],
+      "cr_verdict": "A plush memory-foam experience from a brand known for innersprings—excellent for dedicated side sleepers."
+    }
+  ],
+
+  "price_history": [
+    {
+      "product_id": 1,
+      "entries": [
+        {"date": "2026-05-01", "price": 749.00, "retailer": "Home Depot"},
+        {"date": "2026-06-01", "price": 749.00, "retailer": "Home Depot"},
+        {"date": "2026-07-01", "price": 699.00, "retailer": "Home Depot"},
+        {"date": "2026-08-01", "price": 749.00, "retailer": "Best Buy"},
+        {"date": "2026-09-01", "price": 699.00, "retailer": "Lowe's"},
+        {"date": "2026-10-01", "price": 649.00, "retailer": "Home Depot"}
+      ]
+    },
+    {
+      "product_id": 2,
+      "entries": [
+        {"date": "2026-05-01", "price": 899.00, "retailer": "Best Buy"},
+        {"date": "2026-06-01", "price": 899.00, "retailer": "Best Buy"},
+        {"date": "2026-07-01", "price": 849.00, "retailer": "Best Buy"},
+        {"date": "2026-08-01", "price": 899.00, "retailer": "LG.com"},
+        {"date": "2026-09-01", "price": 849.00, "retailer": "Best Buy"},
+        {"date": "2026-10-01", "price": 799.00, "retailer": "Best Buy"}
+      ]
+    },
+    {
+      "product_id": 3,
+      "entries": [
+        {"date": "2026-05-01", "price": 599.00, "retailer": "Lowe's"},
+        {"date": "2026-06-01", "price": 579.00, "retailer": "Lowe's"},
+        {"date": "2026-07-01", "price": 549.00, "retailer": "Home Depot"},
+        {"date": "2026-08-01", "price": 599.00, "retailer": "Lowe's"},
+        {"date": "2026-09-01", "price": 549.00, "retailer": "Lowe's"},
+        {"date": "2026-10-01", "price": 529.00, "retailer": "Home Depot"}
+      ]
+    },
+    {
+      "product_id": 4,
+      "entries": [
+        {"date": "2026-05-01", "price": 1049.00, "retailer": "Home Depot"},
+        {"date": "2026-06-01", "price": 1049.00, "retailer": "Best Buy"},
+        {"date": "2026-07-01", "price": 949.00, "retailer": "Home Depot"},
+        {"date": "2026-08-01", "price": 999.00, "retailer": "Lowe's"},
+        {"date": "2026-09-01", "price": 949.00, "retailer": "Home Depot"},
+        {"date": "2026-10-01", "price": 899.00, "retailer": "Best Buy"}
+      ]
+    },
+    {
+      "product_id": 5,
+      "entries": [
+        {"date": "2026-05-01", "price": 1099.00, "retailer": "Best Buy"},
+        {"date": "2026-06-01", "price": 1099.00, "retailer": "Best Buy"},
+        {"date": "2026-07-01", "price": 999.00, "retailer": "Home Depot"},
+        {"date": "2026-08-01", "price": 1049.00, "retailer": "Best Buy"},
+        {"date": "2026-09-01", "price": 1049.00, "retailer": "Best Buy"},
+        {"date": "2026-10-01", "price": 949.00, "retailer": "Home Depot"}
+      ]
+    },
+    {
+      "product_id": 6,
+      "entries": [
+        {"date": "2026-05-01", "price": 1249.00, "retailer": "Bosch Home"},
+        {"date": "2026-06-01", "price": 1249.00, "retailer": "Best Buy"},
+        {"date": "2026-07-01", "price": 1199.00, "retailer": "Best Buy"},
+        {"date": "2026-08-01", "price": 1249.00, "retailer": "Bosch Home"},
+        {"date": "2026-09-01", "price": 1199.00, "retailer": "Best Buy"},
+        {"date": "2026-10-01", "price": 1149.00, "retailer": "Best Buy"}
+      ]
+    },
+    {
+      "product_id": 7,
+      "entries": [
+        {"date": "2026-05-01", "price": 1149.00, "retailer": "Best Buy"},
+        {"date": "2026-06-01", "price": 1149.00, "retailer": "Best Buy"},
+        {"date": "2026-07-01", "price": 1049.00, "retailer": "Best Buy"},
+        {"date": "2026-08-01", "price": 1099.00, "retailer": "Home Depot"},
+        {"date": "2026-09-01", "price": 1099.00, "retailer": "Best Buy"},
+        {"date": "2026-10-01", "price": 999.00, "retailer": "Best Buy"}
+      ]
+    },
+    {
+      "product_id": 8,
+      "entries": [
+        {"date": "2026-05-01", "price": 529.00, "retailer": "Lowe's"},
+        {"date": "2026-06-01", "price": 529.00, "retailer": "Lowe's"},
+        {"date": "2026-07-01", "price": 499.00, "retailer": "Home Depot"},
+        {"date": "2026-08-01", "price": 529.00, "retailer": "Lowe's"},
+        {"date": "2026-09-01", "price": 499.00, "retailer": "Lowe's"},
+        {"date": "2026-10-01", "price": 479.00, "retailer": "Home Depot"}
+      ]
+    },
+    {
+      "product_id": 9,
+      "entries": [
+        {"date": "2026-05-01", "price": 649.00, "retailer": "Samsung.com"},
+        {"date": "2026-06-01", "price": 649.00, "retailer": "Best Buy"},
+        {"date": "2026-07-01", "price": 599.00, "retailer": "Best Buy"},
+        {"date": "2026-08-01", "price": 649.00, "retailer": "Samsung.com"},
+        {"date": "2026-09-01", "price": 599.00, "retailer": "Best Buy"},
+        {"date": "2026-10-01", "price": 569.00, "retailer": "Home Depot"}
+      ]
+    },
+    {
+      "product_id": 10,
+      "entries": [
+        {"date": "2026-05-01", "price": 799.00, "retailer": "Best Buy"},
+        {"date": "2026-06-01", "price": 799.00, "retailer": "LG.com"},
+        {"date": "2026-07-01", "price": 749.00, "retailer": "Best Buy"},
+        {"date": "2026-08-01", "price": 799.00, "retailer": "Best Buy"},
+        {"date": "2026-09-01", "price": 749.00, "retailer": "Best Buy"},
+        {"date": "2026-10-01", "price": 699.00, "retailer": "Best Buy"}
+      ]
+    },
+    {
+      "product_id": 11,
+      "entries": [
+        {"date": "2026-05-01", "price": 949.00, "retailer": "Best Buy"},
+        {"date": "2026-06-01", "price": 949.00, "retailer": "Home Depot"},
+        {"date": "2026-07-01", "price": 899.00, "retailer": "Home Depot"},
+        {"date": "2026-08-01", "price": 949.00, "retailer": "Best Buy"},
+        {"date": "2026-09-01", "price": 899.00, "retailer": "Lowe's"},
+        {"date": "2026-10-01", "price": 849.00, "retailer": "Home Depot"}
+      ]
+    },
+    {
+      "product_id": 12,
+      "entries": [
+        {"date": "2026-05-01", "price": 549.00, "retailer": "Home Depot"},
+        {"date": "2026-06-01", "price": 549.00, "retailer": "Lowe's"},
+        {"date": "2026-07-01", "price": 499.00, "retailer": "Home Depot"},
+        {"date": "2026-08-01", "price": 549.00, "retailer": "Home Depot"},
+        {"date": "2026-09-01", "price": 519.00, "retailer": "Lowe's"},
+        {"date": "2026-10-01", "price": 479.00, "retailer": "Home Depot"}
+      ]
+    },
+
+    {
+      "product_id": 101,
+      "entries": [
+        {"date": "2026-05-01", "price": 1299.00, "retailer": "Apple.com"},
+        {"date": "2026-06-01", "price": 1299.00, "retailer": "Apple.com"},
+        {"date": "2026-07-01", "price": 1249.00, "retailer": "Amazon"},
+        {"date": "2026-08-01", "price": 1199.00, "retailer": "Best Buy"},
+        {"date": "2026-09-01", "price": 1299.00, "retailer": "Apple.com"},
+        {"date": "2026-10-01", "price": 1249.00, "retailer": "Amazon"}
+      ]
+    },
+    {
+      "product_id": 102,
+      "entries": [
+        {"date": "2026-05-01", "price": 1999.00, "retailer": "Apple.com"},
+        {"date": "2026-06-01", "price": 1999.00, "retailer": "Apple.com"},
+        {"date": "2026-07-01", "price": 1949.00, "retailer": "B&H Photo"},
+        {"date": "2026-08-01", "price": 1899.00, "retailer": "Amazon"},
+        {"date": "2026-09-01", "price": 1999.00, "retailer": "Apple.com"},
+        {"date": "2026-10-01", "price": 1949.00, "retailer": "Best Buy"}
+      ]
+    },
+    {
+      "product_id": 103,
+      "entries": [
+        {"date": "2026-05-01", "price": 1449.00, "retailer": "Dell.com"},
+        {"date": "2026-06-01", "price": 1399.00, "retailer": "Dell.com"},
+        {"date": "2026-07-01", "price": 1349.00, "retailer": "Best Buy"},
+        {"date": "2026-08-01", "price": 1299.00, "retailer": "Amazon"},
+        {"date": "2026-09-01", "price": 1399.00, "retailer": "Dell.com"},
+        {"date": "2026-10-01", "price": 1349.00, "retailer": "Best Buy"}
+      ]
+    },
+    {
+      "product_id": 104,
+      "entries": [
+        {"date": "2026-05-01", "price": 1349.00, "retailer": "Lenovo.com"},
+        {"date": "2026-06-01", "price": 1299.00, "retailer": "Lenovo.com"},
+        {"date": "2026-07-01", "price": 1249.00, "retailer": "Amazon"},
+        {"date": "2026-08-01", "price": 1299.00, "retailer": "Lenovo.com"},
+        {"date": "2026-09-01", "price": 1249.00, "retailer": "Best Buy"},
+        {"date": "2026-10-01", "price": 1199.00, "retailer": "Amazon"}
+      ]
+    },
+    {
+      "product_id": 105,
+      "entries": [
+        {"date": "2026-05-01", "price": 1599.00, "retailer": "HP.com"},
+        {"date": "2026-06-01", "price": 1599.00, "retailer": "Best Buy"},
+        {"date": "2026-07-01", "price": 1499.00, "retailer": "Best Buy"},
+        {"date": "2026-08-01", "price": 1449.00, "retailer": "Amazon"},
+        {"date": "2026-09-01", "price": 1549.00, "retailer": "HP.com"},
+        {"date": "2026-10-01", "price": 1499.00, "retailer": "Best Buy"}
+      ]
+    },
+    {
+      "product_id": 106,
+      "entries": [
+        {"date": "2026-05-01", "price": 899.00, "retailer": "ASUS Store"},
+        {"date": "2026-06-01", "price": 899.00, "retailer": "Best Buy"},
+        {"date": "2026-07-01", "price": 849.00, "retailer": "Amazon"},
+        {"date": "2026-08-01", "price": 829.00, "retailer": "Amazon"},
+        {"date": "2026-09-01", "price": 879.00, "retailer": "Best Buy"},
+        {"date": "2026-10-01", "price": 849.00, "retailer": "Amazon"}
+      ]
+    },
+    {
+      "product_id": 107,
+      "entries": [
+        {"date": "2026-05-01", "price": 749.00, "retailer": "Acer.com"},
+        {"date": "2026-06-01", "price": 749.00, "retailer": "Best Buy"},
+        {"date": "2026-07-01", "price": 699.00, "retailer": "Amazon"},
+        {"date": "2026-08-01", "price": 679.00, "retailer": "Amazon"},
+        {"date": "2026-09-01", "price": 729.00, "retailer": "Best Buy"},
+        {"date": "2026-10-01", "price": 699.00, "retailer": "Amazon"}
+      ]
+    },
+    {
+      "product_id": 108,
+      "entries": [
+        {"date": "2026-05-01", "price": 1399.00, "retailer": "Framework"},
+        {"date": "2026-06-01", "price": 1399.00, "retailer": "Framework"},
+        {"date": "2026-07-01", "price": 1399.00, "retailer": "Framework"},
+        {"date": "2026-08-01", "price": 1399.00, "retailer": "Framework"},
+        {"date": "2026-09-01", "price": 1399.00, "retailer": "Framework"},
+        {"date": "2026-10-01", "price": 1399.00, "retailer": "Framework"}
+      ]
+    },
+    {
+      "product_id": 109,
+      "entries": [
+        {"date": "2026-05-01", "price": 649.00, "retailer": "Lenovo.com"},
+        {"date": "2026-06-01", "price": 649.00, "retailer": "Best Buy"},
+        {"date": "2026-07-01", "price": 599.00, "retailer": "Amazon"},
+        {"date": "2026-08-01", "price": 579.00, "retailer": "Amazon"},
+        {"date": "2026-09-01", "price": 629.00, "retailer": "Lenovo.com"},
+        {"date": "2026-10-01", "price": 599.00, "retailer": "Amazon"}
+      ]
+    },
+    {
+      "product_id": 110,
+      "entries": [
+        {"date": "2026-05-01", "price": 799.00, "retailer": "HP.com"},
+        {"date": "2026-06-01", "price": 799.00, "retailer": "Best Buy"},
+        {"date": "2026-07-01", "price": 749.00, "retailer": "Best Buy"},
+        {"date": "2026-08-01", "price": 729.00, "retailer": "Amazon"},
+        {"date": "2026-09-01", "price": 779.00, "retailer": "HP.com"},
+        {"date": "2026-10-01", "price": 749.00, "retailer": "Best Buy"}
+      ]
+    },
+    {
+      "product_id": 111,
+      "entries": [
+        {"date": "2026-05-01", "price": 1099.00, "retailer": "Dell.com"},
+        {"date": "2026-06-01", "price": 1049.00, "retailer": "Dell.com"},
+        {"date": "2026-07-01", "price": 999.00, "retailer": "Best Buy"},
+        {"date": "2026-08-01", "price": 979.00, "retailer": "Amazon"},
+        {"date": "2026-09-01", "price": 1049.00, "retailer": "Dell.com"},
+        {"date": "2026-10-01", "price": 999.00, "retailer": "Best Buy"}
+      ]
+    },
+    {
+      "product_id": 112,
+      "entries": [
+        {"date": "2026-05-01", "price": 1199.00, "retailer": "ASUS Store"},
+        {"date": "2026-06-01", "price": 1199.00, "retailer": "Best Buy"},
+        {"date": "2026-07-01", "price": 1099.00, "retailer": "Amazon"},
+        {"date": "2026-08-01", "price": 1079.00, "retailer": "Amazon"},
+        {"date": "2026-09-01", "price": 1149.00, "retailer": "Best Buy"},
+        {"date": "2026-10-01", "price": 1099.00, "retailer": "Amazon"}
+      ]
+    },
+
+    {
+      "product_id": 201,
+      "entries": [
+        {"date": "2026-05-01", "price": 2999.00, "retailer": "Purple.com"},
+        {"date": "2026-06-01", "price": 2999.00, "retailer": "Purple.com"},
+        {"date": "2026-07-01", "price": 2699.00, "retailer": "Purple.com"},
+        {"date": "2026-08-01", "price": 2999.00, "retailer": "Purple.com"},
+        {"date": "2026-09-01", "price": 2699.00, "retailer": "Purple.com"},
+        {"date": "2026-10-01", "price": 2599.00, "retailer": "Mattress Firm"}
+      ]
+    },
+    {
+      "product_id": 202,
+      "entries": [
+        {"date": "2026-05-01", "price": 1295.00, "retailer": "Casper.com"},
+        {"date": "2026-06-01", "price": 1295.00, "retailer": "Casper.com"},
+        {"date": "2026-07-01", "price": 1195.00, "retailer": "Casper.com"},
+        {"date": "2026-08-01", "price": 1295.00, "retailer": "Casper.com"},
+        {"date": "2026-09-01", "price": 1195.00, "retailer": "Casper.com"},
+        {"date": "2026-10-01", "price": 1095.00, "retailer": "Casper.com"}
+      ]
+    },
+    {
+      "product_id": 203,
+      "entries": [
+        {"date": "2026-05-01", "price": 2199.00, "retailer": "Tempur-Pedic.com"},
+        {"date": "2026-06-01", "price": 2199.00, "retailer": "Mattress Firm"},
+        {"date": "2026-07-01", "price": 2199.00, "retailer": "Tempur-Pedic.com"},
+        {"date": "2026-08-01", "price": 2199.00, "retailer": "Tempur-Pedic.com"},
+        {"date": "2026-09-01", "price": 1999.00, "retailer": "Mattress Firm"},
+        {"date": "2026-10-01", "price": 1999.00, "retailer": "Mattress Firm"}
+      ]
+    },
+    {
+      "product_id": 204,
+      "entries": [
+        {"date": "2026-05-01", "price": 1795.00, "retailer": "Saatva.com"},
+        {"date": "2026-06-01", "price": 1795.00, "retailer": "Saatva.com"},
+        {"date": "2026-07-01", "price": 1595.00, "retailer": "Saatva.com"},
+        {"date": "2026-08-01", "price": 1795.00, "retailer": "Saatva.com"},
+        {"date": "2026-09-01", "price": 1695.00, "retailer": "Saatva.com"},
+        {"date": "2026-10-01", "price": 1595.00, "retailer": "Saatva.com"}
+      ]
+    },
+    {
+      "product_id": 205,
+      "entries": [
+        {"date": "2026-05-01", "price": 1049.00, "retailer": "Nectar Sleep"},
+        {"date": "2026-06-01", "price": 949.00, "retailer": "Nectar Sleep"},
+        {"date": "2026-07-01", "price": 849.00, "retailer": "Nectar Sleep"},
+        {"date": "2026-08-01", "price": 999.00, "retailer": "Nectar Sleep"},
+        {"date": "2026-09-01", "price": 899.00, "retailer": "Nectar Sleep"},
+        {"date": "2026-10-01", "price": 849.00, "retailer": "Nectar Sleep"}
+      ]
+    },
+    {
+      "product_id": 206,
+      "entries": [
+        {"date": "2026-05-01", "price": 2799.00, "retailer": "Sleep Number"},
+        {"date": "2026-06-01", "price": 2799.00, "retailer": "Sleep Number"},
+        {"date": "2026-07-01", "price": 2599.00, "retailer": "Sleep Number"},
+        {"date": "2026-08-01", "price": 2799.00, "retailer": "Sleep Number"},
+        {"date": "2026-09-01", "price": 2599.00, "retailer": "Sleep Number"},
+        {"date": "2026-10-01", "price": 2499.00, "retailer": "Sleep Number"}
+      ]
+    },
+    {
+      "product_id": 207,
+      "entries": [
+        {"date": "2026-05-01", "price": 2495.00, "retailer": "Casper.com"},
+        {"date": "2026-06-01", "price": 2495.00, "retailer": "Casper.com"},
+        {"date": "2026-07-01", "price": 2295.00, "retailer": "Casper.com"},
+        {"date": "2026-08-01", "price": 2495.00, "retailer": "Casper.com"},
+        {"date": "2026-09-01", "price": 2295.00, "retailer": "Casper.com"},
+        {"date": "2026-10-01", "price": 2195.00, "retailer": "Casper.com"}
+      ]
+    },
+    {
+      "product_id": 208,
+      "entries": [
+        {"date": "2026-05-01", "price": 849.00, "retailer": "Nectar Sleep"},
+        {"date": "2026-06-01", "price": 799.00, "retailer": "Nectar Sleep"},
+        {"date": "2026-07-01", "price": 699.00, "retailer": "Nectar Sleep"},
+        {"date": "2026-08-01", "price": 799.00, "retailer": "Nectar Sleep"},
+        {"date": "2026-09-01", "price": 749.00, "retailer": "Nectar Sleep"},
+        {"date": "2026-10-01", "price": 699.00, "retailer": "Nectar Sleep"}
+      ]
+    },
+    {
+      "product_id": 209,
+      "entries": [
+        {"date": "2026-05-01", "price": 1299.00, "retailer": "Purple.com"},
+        {"date": "2026-06-01", "price": 1299.00, "retailer": "Purple.com"},
+        {"date": "2026-07-01", "price": 1199.00, "retailer": "Purple.com"},
+        {"date": "2026-08-01", "price": 1299.00, "retailer": "Purple.com"},
+        {"date": "2026-09-01", "price": 1199.00, "retailer": "Purple.com"},
+        {"date": "2026-10-01", "price": 1099.00, "retailer": "Mattress Firm"}
+      ]
+    },
+    {
+      "product_id": 210,
+      "entries": [
+        {"date": "2026-05-01", "price": 1595.00, "retailer": "Saatva.com"},
+        {"date": "2026-06-01", "price": 1595.00, "retailer": "Saatva.com"},
+        {"date": "2026-07-01", "price": 1395.00, "retailer": "Saatva.com"},
+        {"date": "2026-08-01", "price": 1595.00, "retailer": "Saatva.com"},
+        {"date": "2026-09-01", "price": 1495.00, "retailer": "Saatva.com"},
+        {"date": "2026-10-01", "price": 1395.00, "retailer": "Saatva.com"}
+      ]
+    }
+  ]
+}
