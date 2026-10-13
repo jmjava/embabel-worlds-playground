@@ -1,6 +1,7 @@
 package com.embabel.example.crplanner
 
 import com.embabel.agent.core.AgentPlatform
+import com.embabel.agent.core.ProcessOptions
 import com.embabel.agent.domain.io.UserInput
 import org.slf4j.LoggerFactory
 import org.springframework.http.ResponseEntity
@@ -40,11 +41,10 @@ class BuyingPlannerController(
         val userInput = UserInput(content = content)
 
         return try {
-            val result = agentPlatform.runProcess(
-                input = userInput,
-                agentScope = "BuyingPlannerAgent",
-                goalName = "buyingPlan",
-            )
+            val agent = agentPlatform.agents().first { it.name == "BuyingPlannerAgent" }
+            val process = agentPlatform.createAgentProcessFrom(agent, ProcessOptions.DEFAULT, userInput)
+            process.run()
+            val result = process.resultOfType(BuyingPlan::class.java)
             ResponseEntity.ok(result)
         } catch (e: Exception) {
             logger.error("Agent failed", e)

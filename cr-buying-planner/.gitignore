@@ -1,6 +1,8 @@
 # Python
+.venv/
 mock-api/.venv/
 mock-api/__pycache__/
+__pycache__/
 *.pyc
 
 # Java/Maven

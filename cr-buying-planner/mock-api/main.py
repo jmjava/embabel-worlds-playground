@@ -95,6 +95,12 @@ def _matches_text(product: dict, query: str) -> bool:
 
 # ── Endpoints ────────────────────────────────────────────────────────
 
+@app.get("/api/health")
+async def health():
+    """Health check."""
+    return {"status": "ok", "products": len(_products), "categories": len(_categories)}
+
+
 @app.get("/api/categories")
 async def list_categories():
     """List all product categories."""
