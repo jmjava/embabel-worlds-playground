@@ -18,14 +18,21 @@ data class BuyingIntent(
 
 @JsonClassDescription("A product candidate with match score")
 data class ProductCandidate(
+    @get:JsonPropertyDescription("The product ID from the catalog")
     val id: String,
+    @get:JsonPropertyDescription("Product name")
     val name: String,
+    @get:JsonPropertyDescription("Brand name")
     val brand: String,
+    @get:JsonPropertyDescription("Current price in dollars")
     val price: Double,
+    @get:JsonPropertyDescription("Consumer Reports overall score (0-100)")
     val overallScore: Int,
+    @get:JsonPropertyDescription("1-2 sentences explaining why this product matches the user's needs")
     val matchExplanation: String,
 )
 
+@JsonClassDescription("List of product candidates ranked by relevance")
 data class ProductCandidateList(val candidates: List<ProductCandidate>)
 
 @JsonClassDescription("Complete buying plan with top picks and reasoning")

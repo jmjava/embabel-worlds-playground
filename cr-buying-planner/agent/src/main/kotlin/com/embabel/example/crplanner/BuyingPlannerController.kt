@@ -1,6 +1,7 @@
 package com.embabel.example.crplanner
 
 import com.embabel.agent.core.AgentPlatform
+import com.embabel.agent.core.AgentProcessStatusCode
 import com.embabel.agent.core.ProcessOptions
 import com.embabel.agent.domain.io.UserInput
 import org.slf4j.LoggerFactory
@@ -11,6 +12,14 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
+/**
+ * REST controller that exposes the BuyingPlannerAgent as an HTTP endpoint.
+ *
+ * The agent is registered with goal "buyingPlan" (via @AchievesGoal export),
+ * accepting [UserInput] and producing a [BuyingPlan]. This controller
+ * performs the low-level invocation: look up the agent by name, create a
+ * process, bind the input, run, and extract the typed result.
+ */
 @RestController
 @RequestMapping("/api/v1")
 @CrossOrigin(origins = ["*"])
@@ -24,8 +33,9 @@ class BuyingPlannerController(
      * Accept a natural-language buying request and run the BuyingPlannerAgent
      * to produce a [BuyingPlan].
      *
-     * The agent is exported as goal "buyingPlan" with starting input type
-     * [UserInput], so we invoke it through the platform's process runner.
+     * The GOAP chain is: UserInput → parseIntent → searchProducts →
+     * compareTopCandidates → BuyingPlan. The platform resolves this
+     * automatically from the action type signatures.
      *
      * Request body: `{ "content": "I'm looking for a laptop under $1500..." }`
      * Response: the serialised [BuyingPlan] JSON.
@@ -44,6 +54,13 @@ class BuyingPlannerController(
             val agent = agentPlatform.agents().first { it.name == "BuyingPlannerAgent" }
             val process = agentPlatform.createAgentProcessFrom(agent, ProcessOptions.DEFAULT, userInput)
             process.run()
+
+            if (process.status != AgentProcessStatusCode.COMPLETED) {
+                logger.warn("Agent process did not complete: status={}", process.status)
+                return ResponseEntity.internalServerError()
+                    .body(mapOf("error" to "Agent process ended with status: ${process.status}"))
+            }
+
             val result = process.resultOfType(BuyingPlan::class.java)
             ResponseEntity.ok(result)
         } catch (e: Exception) {

@@ -5,6 +5,16 @@ import org.springframework.core.ParameterizedTypeReference
 import org.springframework.stereotype.Component
 import org.springframework.web.client.RestClient
 
+/**
+ * REST client for the Consumer Reports mock API.
+ *
+ * Uses Spring Boot 3's [RestClient] with [ParameterizedTypeReference] for
+ * generic JSON deserialization. Returns untyped maps because the mock API's
+ * response shapes vary by endpoint and are consumed as raw JSON by the LLM
+ * prompts.
+ *
+ * @param baseUrl injected from `cr-api.base-url` in application.yml
+ */
 @Component
 class CrApiClient(
     @Value("\${cr-api.base-url}") private val baseUrl: String,
@@ -15,6 +25,7 @@ class CrApiClient(
             .build()
     }
 
+    /** List all product categories. Corresponds to `GET /api/categories`. */
     fun getCategories(): List<Map<String, Any>> {
         return restClient.get()
             .uri("/api/categories")
@@ -23,6 +34,10 @@ class CrApiClient(
             ?: emptyList()
     }
 
+    /**
+     * List products in a category with optional price/score filters.
+     * Corresponds to `GET /api/categories/{categoryId}/products`.
+     */
     fun getProducts(
         categoryId: String,
         maxPrice: Double? = null,
@@ -40,6 +55,7 @@ class CrApiClient(
             ?: emptyList()
     }
 
+    /** Fetch a single product with its full rating detail. `GET /api/products/{id}`. */
     fun getProduct(productId: String): Map<String, Any> {
         return restClient.get()
             .uri("/api/products/{productId}", productId)
@@ -48,6 +64,7 @@ class CrApiClient(
             ?: emptyMap()
     }
 
+    /** Fetch price history entries for a product. `GET /api/products/{id}/price-history`. */
     fun getPriceHistory(productId: String): List<Map<String, Any>> {
         val response = restClient.get()
             .uri("/api/products/{productId}/price-history", productId)
@@ -58,6 +75,7 @@ class CrApiClient(
         return response["entries"] as? List<Map<String, Any>> ?: emptyList()
     }
 
+    /** Side-by-side comparison of products by id. `GET /api/compare?ids=a,b,c`. */
     fun compareProducts(ids: List<String>): Map<String, Any> {
         val idsParam = ids.joinToString(",")
         return restClient.get()
@@ -71,6 +89,7 @@ class CrApiClient(
             ?: emptyMap()
     }
 
+    /** Full-text product search. `GET /api/search?q=...`. Returns the `results` array. */
     fun search(query: String): List<Map<String, Any>> {
         val response = restClient.get()
             .uri { uriBuilder ->

@@ -22,7 +22,7 @@ An end-to-end proof-of-concept that uses **Embabel** agents and a **Consumer Rep
 │  parseIntent → searchProducts → compareTopCandidates        │
 ├─────────────────────────────────────────────────────────────┤
 │  Mock CR API (FastAPI)                          :8900       │
-│  34 products · 3 categories · 6 endpoints                   │
+│  34 products · 3 categories · 7 endpoints                   │
 ├─────────────────────────────────────────────────────────────┤
 │  Worlds Realm (realm-consumer-reports)          future       │
 │  types + apis + views + producers → appliance install       │
@@ -52,7 +52,7 @@ This starts the mock API on **http://localhost:8900** (Swagger docs at `/docs`) 
 
 | Directory | Description |
 |-----------|-------------|
-| `mock-api/` | FastAPI server with 34 synthetic products, 3 categories, and 6 REST endpoints. Data lives in `data/seed.json`. |
+| `mock-api/` | FastAPI server with 34 synthetic products, 3 categories, and 7 REST endpoints. Data lives in `data/seed.json`. |
 | `agent/` | Kotlin/Embabel `BuyingPlannerAgent` with a 3-step GOAP flow. Built with Maven (`pom.xml`). |
 | `ui/` | Five-screen vanilla-JS browser demo: Category Picker → Budget & Priority → Rated Products → Compare → Plan. |
 | `realm/` | Embabel Worlds realm spec (`realm.yml`, types, apis, views, producers). Ready to install when the appliance is available. |
@@ -62,6 +62,7 @@ This starts the mock API on **http://localhost:8900** (Swagger docs at `/docs`) 
 
 | Endpoint | Method | Description |
 |----------|--------|-------------|
+| `/api/health` | GET | Health check returning product and category counts |
 | `/api/categories` | GET | List all product categories |
 | `/api/categories/{category_id}/products` | GET | List products in a category (filters: `max_price`, `min_score`, `sort_by`) |
 | `/api/products/{product_id}` | GET | Get a single product with its full rating |
@@ -84,14 +85,14 @@ The goal is exported as a remote service (`buyingPlan`) that accepts `UserInput`
 The `realm/` directory contains the complete realm spec for **`realm-consumer-reports`**, ready to install when the Embabel Worlds appliance is available:
 
 - **`realm.yml`** — Manifest declaring the realm name, version, author, and exports.
-- **`types/product-types.yml`** — Eight domain types and their relationships (see Data Model below).
+- **`types/product-types.yml`** — Seven domain types and their relationships (see Data Model below).
 - **`apis/cr-mock-api.yml`** — Declares the mock API connection and its six operations.
 - **`views/buying-views.yml`** — Five Cypher-backed views for common queries (top-rated, budget picks, price trends, comparisons, buying history).
 - **`producers/product-producers.yml`** — Two producers: a generative price-trend summarizer and a remote similar-products finder.
 
 ## Data Model
 
-The realm defines **8 types** connected by graph relationships:
+The realm defines **7 types** connected by graph relationships:
 
 | Type | Description | Key Relations |
 |------|-------------|---------------|
@@ -145,7 +146,7 @@ Request body:
 
 Response: a `BuyingPlan` JSON with `topPick`, `runnerUp`, `budgetPick`, `reasoning`, `comparisonSummary`, `timingAdvice`, and `content`.
 
-> **Note:** The controller uses `AgentPlatform.runProcess()` to invoke the agent. If the exact Embabel API signature differs from the version you have, adjust the `BuyingPlannerController.kt` invocation accordingly — the pattern (accept `UserInput`, produce `BuyingPlan`) is stable.
+> **Note:** The controller uses `AgentPlatform.createAgentProcessFrom()` to create and run the agent process. The pattern is `createAgentProcessFrom(agent, ProcessOptions.DEFAULT, userInput)` → `process.run()` → `process.resultOfType(BuyingPlan::class.java)`. This is the standard low-level invocation pattern for Embabel agents.
 
 ## Worlds Integration
 

@@ -1,0 +1,6 @@
+{
+  "app": "node lib/index.js",
+  "context": {
+    "@aws-cdk/core:checkSecretUsage": true
+  }
+}

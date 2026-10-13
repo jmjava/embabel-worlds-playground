@@ -1,3 +1,5 @@
+# Realm manifest for the Consumer Reports buying planner.
+# Install into Worlds with: embabel realms link /path/to/cr-buying-planner
 name: realm-consumer-reports
 version: 0.1.0
 author: jmjava

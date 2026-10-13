@@ -1,3 +1,6 @@
+# API declaration for the Consumer Reports mock API.
+# The mock server (mock-api/main.py) implements these operations on port 8900.
+# In production, swap the url for an authenticated Consumer Reports data feed.
 apis:
   cr-ratings:
     description: "Consumer Reports mock ratings API"

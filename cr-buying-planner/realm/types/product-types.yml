@@ -1,3 +1,14 @@
+# Domain types for the Consumer Reports realm.
+#
+# Graph structure:
+#   Category ←[IN_CATEGORY]← Product ←[RATES]← Rating ←[PART_OF]← SubScore
+#                              ↑                   
+#                     [PRICE_FOR]                  
+#                     PriceEntry                   
+#
+# Session-scoped user anchors:
+#   BuyingIntent → BuyingPlan → Product (TOP_PICK / RUNNER_UP / BUDGET_PICK)
+#
 types:
   Category:
     description: "A product category with rating priorities"

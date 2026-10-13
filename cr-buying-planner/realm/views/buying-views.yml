@@ -1,3 +1,6 @@
+# Cypher-backed views for the Worlds console.
+# Each view declares parameters and a Cypher query that runs against the
+# realm's Neo4j graph. The optional ai.hint steers LLM-assisted exploration.
 views:
   top-rated-by-category:
     description: "Top rated products in a category"
@@ -62,4 +65,3 @@ views:
       RETURN bi.category AS category, bi.maxBudget AS budget,
              top.name AS topPick, runner.name AS runnerUp,
              budget.name AS budgetPick, bp.reasoning AS reasoning
-      ORDER BY bp.createdAt DESC

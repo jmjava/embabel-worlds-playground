@@ -8,6 +8,21 @@ import com.embabel.agent.api.common.OperationContext
 import com.embabel.agent.domain.io.UserInput
 import com.fasterxml.jackson.databind.ObjectMapper
 
+/**
+ * A 3-step GOAP agent that recommends Consumer Reports–rated products.
+ *
+ * The action chain is resolved automatically by the Embabel platform
+ * from input/output type compatibility:
+ *
+ *   UserInput → [parseIntent] → BuyingIntent → [searchProducts] → ProductCandidateList
+ *             → [compareTopCandidates] → BuyingPlan
+ *
+ * Each action uses `context.ai().withDefaultLlm().createObject()` for structured
+ * LLM output, and [CrApiClient] for product data from the mock API.
+ *
+ * The final action carries `@AchievesGoal` with `export = Export(remote = true)`,
+ * making the entire chain available as a remote service named "buyingPlan".
+ */
 @Agent(
     description = "Recommend the best products to buy based on Consumer Reports ratings, " +
         "budget constraints, and user priorities",
@@ -17,6 +32,12 @@ class BuyingPlannerAgent(
     private val objectMapper: ObjectMapper,
 ) {
 
+    /**
+     * Extract a structured [BuyingIntent] from free-text user input.
+     *
+     * The LLM maps natural language ("I need a quiet washing machine under $800")
+     * into category, budget, priorities, and requirements.
+     */
     @Action
     fun parseIntent(userInput: UserInput, context: OperationContext): BuyingIntent {
         val prompt = """
@@ -36,6 +57,10 @@ class BuyingPlannerAgent(
         return context.ai().withDefaultLlm().createObject(prompt, BuyingIntent::class.java)
     }
 
+    /**
+     * Fetch products from the mock API and ask the LLM to score/rank them
+     * against the user's priorities, producing a [ProductCandidateList].
+     */
     @Action
     fun searchProducts(intent: BuyingIntent, context: OperationContext): ProductCandidateList {
         val maxPrice = if (intent.maxBudget > 0) intent.maxBudget else null
@@ -71,6 +96,14 @@ class BuyingPlannerAgent(
         return context.ai().withDefaultLlm().createObject(prompt, ProductCandidateList::class.java)
     }
 
+    /**
+     * Gather full details, price histories, and comparison data for the top
+     * candidates, then generate a complete [BuyingPlan] with top pick,
+     * runner-up, budget pick, reasoning, and timing advice.
+     *
+     * This is the terminal action — `@AchievesGoal` marks the GOAP chain as
+     * complete and exports it as a remote service.
+     */
     @AchievesGoal(
         description = "Produce a buying plan with top pick, runner-up, and budget pick",
         export = Export(

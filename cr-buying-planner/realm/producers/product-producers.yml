@@ -1,3 +1,8 @@
+# Producers create derived knowledge graph edges from existing data.
+#
+# - generative: uses an LLM prompt template to synthesize new information
+# - remote: calls an API operation with mapped inputs
+#
 producers:
   price-trend-summary:
     type: generative
@@ -17,4 +22,4 @@ producers:
     api: cr-ratings
     operation: searchProducts
     mapInput: |
-      { "q": "{{brand}} {{category}}" }
+      { "q": "{{brand}} {{name}}" }
