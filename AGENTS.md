@@ -48,3 +48,15 @@ Optional: **`OPENAI_API_KEY`** for `bash buying-planner/run-demo.sh --with-agent
 If you previously configured the environment only in the Cursor dashboard, commit and merge **`.cursor/environment.json`** so team and Cloud Agents resolve the same install script (repo config overrides personal defaults).
 
 **Refresh the Cloud Build:** Cursor → Cloud Agents → your environment → **Builds** → **Trigger build**. Pushes to `main` also schedule recurring rebuilds when the active Build is stale.
+
+## Secret scanning (local)
+
+This repo uses **GitGuardian [ggshield](https://github.com/GitGuardian/ggshield)** via **pre-commit** (same pattern as `jmjava/tekton-dag`):
+
+```bash
+pip install pre-commit ggshield
+pre-commit install
+pre-commit run --all-files   # optional smoke
+```
+
+Commits are blocked if ggshield finds API keys, tokens, or private keys in staged changes. GitHub also reports **GitGuardian Security Checks** on pushes/PRs when the app is enabled on the repository.

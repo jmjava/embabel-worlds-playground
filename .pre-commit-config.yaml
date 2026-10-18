@@ -1,0 +1,20 @@
+# Block committing secrets before they reach a public remote.
+# Install: pip install pre-commit ggshield && pre-commit install
+# Manual:  pre-commit run --all-files
+#
+# GitHub also runs GitGuardian on pushes/PRs when the repo app is enabled.
+
+repos:
+  - repo: https://github.com/GitGuardian/ggshield
+    rev: v1.29.0
+    hooks:
+      - id: ggshield
+        language_version: python3
+        stages: [pre-commit]
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: detect-private-key
+      - id: check-added-large-files
+        args: ["--maxkb=1000"]
