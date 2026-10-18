@@ -1,11 +1,11 @@
-# Realm manifest for the Consumer Reports buying planner.
+# Realm manifest for the buying planner POC.
 # Install into Worlds with: embabel realms link /path/to/buying-planner
-name: realm-consumer-reports
+name: realm-buying-planner
 version: 0.1.0
 author: jmjava
 category: shopping
-tags: [consumer-reports, buying-planner, product-ratings]
-description: Consumer Reports product ratings and buying recommendations
+tags: [buying-planner, product-ratings, mock-catalog]
+description: Synthetic product ratings and buying recommendations
 exports:
   types: true
   apis: true

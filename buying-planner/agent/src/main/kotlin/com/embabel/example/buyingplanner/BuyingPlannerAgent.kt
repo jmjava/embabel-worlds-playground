@@ -1,4 +1,4 @@
-package com.embabel.example.crplanner
+package com.embabel.example.buyingplanner
 
 import com.embabel.agent.api.annotation.AchievesGoal
 import com.embabel.agent.api.annotation.Action
@@ -9,7 +9,7 @@ import com.embabel.agent.domain.io.UserInput
 import com.fasterxml.jackson.databind.ObjectMapper
 
 /**
- * A 3-step GOAP agent that recommends Consumer Reports–rated products.
+ * A 3-step GOAP agent that recommends rated products from the mock catalog.
  *
  * The action chain is resolved automatically by the Embabel platform
  * from input/output type compatibility:
@@ -18,17 +18,17 @@ import com.fasterxml.jackson.databind.ObjectMapper
  *             → [compareTopCandidates] → BuyingPlan
  *
  * Each action uses `context.ai().withDefaultLlm().createObject()` for structured
- * LLM output, and [CrApiClient] for product data from the mock API.
+ * LLM output, and [CatalogApiClient] for product data from the mock API.
  *
  * The final action carries `@AchievesGoal` with `export = Export(remote = true)`,
  * making the entire chain available as a remote service named "buyingPlan".
  */
 @Agent(
-    description = "Recommend the best products to buy based on Consumer Reports ratings, " +
+    description = "Recommend the best products to buy based on lab-style ratings, " +
         "budget constraints, and user priorities",
 )
 class BuyingPlannerAgent(
-    private val crApiClient: CrApiClient,
+    private val catalogApiClient: CatalogApiClient,
     private val objectMapper: ObjectMapper,
 ) {
 
@@ -64,7 +64,7 @@ class BuyingPlannerAgent(
     @Action
     fun searchProducts(intent: BuyingIntent, context: OperationContext): ProductCandidateList {
         val maxPrice = if (intent.maxBudget > 0) intent.maxBudget else null
-        val products = crApiClient.getProducts(
+        val products = catalogApiClient.getProducts(
             categoryId = intent.category,
             maxPrice = maxPrice,
         )
@@ -72,14 +72,14 @@ class BuyingPlannerAgent(
         val productsJson = objectMapper.writeValueAsString(products)
 
         val prompt = """
-            |You are a Consumer Reports buying advisor. Score and rank these products
+            |You are a product buying advisor. Score and rank these products
             |based on the user's priorities.
             |
             |User priorities: ${intent.priorities.joinToString(", ").ifEmpty { "overall value" }}
             |User requirements: ${intent.requirements.ifEmpty { "none specified" }}
             |Budget: ${if (intent.maxBudget > 0) "$${intent.maxBudget}" else "no limit"}
             |
-            |Available products (with CR ratings):
+            |Available products (with overall scores and verdicts):
             |$productsJson
             |
             |Return the top 5-6 candidates. For each candidate provide:
@@ -87,7 +87,7 @@ class BuyingPlannerAgent(
             |- name: product name
             |- brand: brand name
             |- price: current price
-            |- overallScore: the CR overall score
+            |- overallScore: the overall score (0-100)
             |- matchExplanation: 1-2 sentences explaining why this product matches the user's needs
             |
             |Rank by relevance to the user's priorities, not just overall score.
@@ -120,10 +120,10 @@ class BuyingPlannerAgent(
     ): BuyingPlan {
         val topIds = candidates.candidates.take(4).map { it.id }
 
-        val details = topIds.map { id -> crApiClient.getProduct(id) }
-        val priceHistories = topIds.map { id -> crApiClient.getPriceHistory(id) }
+        val details = topIds.map { id -> catalogApiClient.getProduct(id) }
+        val priceHistories = topIds.map { id -> catalogApiClient.getPriceHistory(id) }
         val comparison = if (topIds.size >= 2) {
-            crApiClient.compareProducts(topIds)
+            catalogApiClient.compareProducts(topIds)
         } else {
             emptyMap()
         }
@@ -133,7 +133,7 @@ class BuyingPlannerAgent(
         val comparisonJson = objectMapper.writeValueAsString(comparison)
 
         val prompt = """
-            |You are a Consumer Reports buying advisor creating a final buying plan.
+            |You are a product buying advisor creating a final buying plan.
             |
             |User intent:
             |- Category: ${intent.category}

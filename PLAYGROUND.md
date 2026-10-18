@@ -1,6 +1,6 @@
 # What this playground proves
 
-This repository holds **realms and experiments** for [Embabel Worlds](https://worlds.embabel.com). The headline POC is **Buying Planner** — a synthetic Consumer Reports–style catalog, a five-screen browser fixture, a Kotlin GOAP agent, and an install-ready realm spec.
+This repository holds **realms and experiments** for [Embabel Worlds](https://worlds.embabel.com). The headline POC is **Buying Planner** — a synthetic product-ratings catalog, a five-screen browser fixture, a Kotlin GOAP agent, and an install-ready realm spec.
 
 **Canonical test and feature map:** [buying-planner/TEST-AND-DEMONSTRATION.md](buying-planner/TEST-AND-DEMONSTRATION.md)
 

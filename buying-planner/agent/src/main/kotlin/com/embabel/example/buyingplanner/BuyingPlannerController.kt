@@ -1,4 +1,4 @@
-package com.embabel.example.crplanner
+package com.embabel.example.buyingplanner
 
 import com.embabel.agent.core.AgentPlatform
 import com.embabel.agent.core.AgentProcessStatusCode

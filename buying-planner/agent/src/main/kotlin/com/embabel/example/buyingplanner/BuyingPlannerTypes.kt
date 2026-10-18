@@ -1,4 +1,4 @@
-package com.embabel.example.crplanner
+package com.embabel.example.buyingplanner
 
 import com.embabel.agent.domain.library.HasContent
 import com.fasterxml.jackson.annotation.JsonClassDescription
@@ -26,7 +26,7 @@ data class ProductCandidate(
     val brand: String,
     @get:JsonPropertyDescription("Current price in dollars")
     val price: Double,
-    @get:JsonPropertyDescription("Consumer Reports overall score (0-100)")
+    @get:JsonPropertyDescription("Overall product score (0-100)")
     val overallScore: Int,
     @get:JsonPropertyDescription("1-2 sentences explaining why this product matches the user's needs")
     val matchExplanation: String,

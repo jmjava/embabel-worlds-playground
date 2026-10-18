@@ -1,6 +1,6 @@
 """Buying Planner — Mock API.
 
-Loads synthetic Consumer-Reports-style ratings from data/seed.json
+Loads synthetic product ratings from data/seed.json
 and exposes them as a lightweight REST API on port 8900.
 """
 
@@ -67,14 +67,14 @@ def _merge_rating(product: dict) -> dict:
     """Return a copy of *product* with its rating fields merged in."""
     rating = _ratings_by_product.get(product["id"])
     if rating is None:
-        return {**product, "overall_score": None, "sub_scores": {}, "pros": [], "cons": [], "cr_verdict": None}
+        return {**product, "overall_score": None, "sub_scores": {}, "pros": [], "cons": [], "verdict": None}
     return {
         **product,
         "overall_score": rating["overall_score"],
         "sub_scores": rating["sub_scores"],
         "pros": rating["pros"],
         "cons": rating["cons"],
-        "cr_verdict": rating["cr_verdict"],
+        "verdict": rating["verdict"],
     }
 
 
@@ -88,7 +88,7 @@ def _matches_text(product: dict, query: str) -> bool:
         product.get("model", ""),
         " ".join(rating.get("pros", [])),
         " ".join(rating.get("cons", [])),
-        rating.get("cr_verdict", ""),
+        rating.get("verdict", ""),
     ]).lower()
     return q in searchable
 

@@ -1,8 +1,8 @@
 # Buying Planner POC
 
-An end-to-end proof-of-concept that uses **Embabel** agents and a **Consumer Reports–style mock API** to guide a user through picking the best product in a category. The POC demonstrates a 3-step GOAP agent flow, a five-screen browser UI, and a ready-to-install Worlds realm spec.
+An end-to-end proof-of-concept that uses **Embabel** agents and a **synthetic ratings mock API** to guide a user through picking the best product in a category. The POC demonstrates a 3-step GOAP agent flow, a five-screen browser UI, and a ready-to-install Worlds realm spec.
 
-> **Note:** All product ratings, scores, verdicts, pros/cons, and price histories in `mock-api/data/seed.json` are **synthetic**. They are not sourced from Consumer Reports and do not represent actual CR evaluations.
+> **Note:** All product ratings, scores, verdicts, pros/cons, and price histories in `mock-api/data/seed.json` are **synthetic** fixture data for demos and tests.
 
 ---
 
@@ -21,10 +21,10 @@ An end-to-end proof-of-concept that uses **Embabel** agents and a **Consumer Rep
 │  BuyingPlannerAgent (Kotlin / Embabel)          :8080       │
 │  parseIntent → searchProducts → compareTopCandidates        │
 ├─────────────────────────────────────────────────────────────┤
-│  Mock CR API (FastAPI)                          :8900       │
+│  Mock catalog API (FastAPI)                     :8900       │
 │  34 products · 3 categories · 7 endpoints                   │
 ├─────────────────────────────────────────────────────────────┤
-│  Worlds Realm (realm-consumer-reports)          future       │
+│  Worlds Realm (realm-buying-planner)            future       │
 │  types + apis + views + producers → appliance install       │
 └─────────────────────────────────────────────────────────────┘
 ```
@@ -96,11 +96,11 @@ The goal is exported as a remote service (`buyingPlan`) that accepts `UserInput`
 
 ## Worlds Realm
 
-The `realm/` directory contains the complete realm spec for **`realm-consumer-reports`**, ready to install when the Embabel Worlds appliance is available:
+The `realm/` directory contains the complete realm spec for **`realm-buying-planner`**, ready to install when the Embabel Worlds appliance is available:
 
 - **`realm.yml`** — Manifest declaring the realm name, version, author, and exports.
 - **`types/product-types.yml`** — Seven domain types and their relationships (see Data Model below).
-- **`apis/cr-mock-api.yml`** — Declares the mock API connection and its six operations.
+- **`apis/mock-catalog-api.yml`** — Declares the mock API connection and its six operations.
 - **`views/buying-views.yml`** — Five Cypher-backed views for common queries (top-rated, budget picks, price trends, comparisons, buying history).
 - **`producers/product-producers.yml`** — Two producers: a generative price-trend summarizer and a remote similar-products finder.
 
@@ -112,7 +112,7 @@ The realm defines **7 types** connected by graph relationships:
 |------|-------------|---------------|
 | **Category** | Product category with rating priorities (e.g. washing-machines) | — |
 | **Product** | A product with pricing and brand info | `IN_CATEGORY` → Category |
-| **Rating** | Overall CR rating (0–100) with pros, cons, verdict | `RATES` → Product |
+| **Rating** | Overall score (0–100) with pros, cons, verdict | `RATES` → Product |
 | **SubScore** | A sub-dimension score (e.g. reliability: 85) | `PART_OF` → Rating |
 | **PriceEntry** | A historical price point with date and retailer | `PRICE_FOR` → Product |
 | **BuyingIntent** | User's buying intent per session (user anchor) | — |
@@ -122,9 +122,9 @@ The realm defines **7 types** connected by graph relationships:
 
 ## Next Steps
 
-- **Cross-realm queries** — combine CR ratings with other realms (e.g. warranty data, retailer inventory)
+- **Cross-realm queries** — combine catalog ratings with other realms (e.g. warranty data, retailer inventory)
 - **Add more categories** — extend `seed.json` with TVs, refrigerators, headphones, etc.
-- **Real CR API integration** — swap the mock API for an authenticated Consumer Reports data feed
+- **Partner catalog integration** — swap the mock API for an authenticated production ratings feed
 - **Price alert producer** — add a producer that monitors price drops and notifies users
 
 ## Running with the AI Agent
@@ -164,7 +164,7 @@ Response: a `BuyingPlan` JSON with `topPick`, `runnerUp`, `budgetPick`, `reasoni
 
 ## Worlds Integration
 
-The `realm/` directory contains the complete **`realm-consumer-reports`** spec ready for the Embabel Worlds appliance.
+The `realm/` directory contains the complete **`realm-buying-planner`** spec ready for the Embabel Worlds appliance.
 
 ### Current Status
 

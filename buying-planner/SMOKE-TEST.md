@@ -25,7 +25,7 @@
 | Asset | Status | Notes |
 |-------|--------|-------|
 | `index.html` | **PASS** | Loads correctly, 5 screens with data-step attributes |
-| `styles.css` | **PASS** | CR-themed design variables, responsive layout |
+| `styles.css` | **PASS** | brand-themed design variables, responsive layout |
 | `app.js` | **PASS** | Loads without syntax errors |
 
 ### UI → API Integration

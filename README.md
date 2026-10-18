@@ -25,7 +25,7 @@ Undo: `docker compose down -v` inside `~/embabel/worlds`, then delete that direc
 
 ### Buying Planner
 
-A proof-of-concept demonstrating a 3-step GOAP agent that recommends Consumer Reports–rated products. Includes a FastAPI mock API (34 synthetic products), a Kotlin/Embabel agent, a five-screen browser UI, and a complete Worlds realm spec.
+A proof-of-concept demonstrating a 3-step GOAP agent that recommends products from a synthetic ratings catalog. Includes a FastAPI mock API (34 synthetic products), a Kotlin/Embabel agent, a five-screen browser UI, and a complete Worlds realm spec.
 
 See [buying-planner/README.md](buying-planner/README.md) for quick start and architecture details.
 

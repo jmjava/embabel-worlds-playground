@@ -19,7 +19,7 @@ producers:
     description: "Products similar to this one by score and price range"
     targetType: Product
     edgeType: SIMILAR_TO
-    api: cr-ratings
+    api: mock-catalog
     operation: searchProducts
     mapInput: |
       { "q": "{{brand}} {{name}}" }

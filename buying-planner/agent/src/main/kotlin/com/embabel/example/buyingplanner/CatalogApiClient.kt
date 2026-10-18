@@ -1,4 +1,4 @@
-package com.embabel.example.crplanner
+package com.embabel.example.buyingplanner
 
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.core.ParameterizedTypeReference
@@ -6,18 +6,18 @@ import org.springframework.stereotype.Component
 import org.springframework.web.client.RestClient
 
 /**
- * REST client for the Consumer Reports mock API.
+ * REST client for the synthetic ratings mock API.
  *
  * Uses Spring Boot 3's [RestClient] with [ParameterizedTypeReference] for
  * generic JSON deserialization. Returns untyped maps because the mock API's
  * response shapes vary by endpoint and are consumed as raw JSON by the LLM
  * prompts.
  *
- * @param baseUrl injected from `cr-api.base-url` in application.yml
+ * @param baseUrl injected from `catalog-api.base-url` in application.yml
  */
 @Component
-class CrApiClient(
-    @Value("\${cr-api.base-url}") private val baseUrl: String,
+class CatalogApiClient(
+    @Value("\${catalog-api.base-url}") private val baseUrl: String,
 ) {
     private val restClient: RestClient by lazy {
         RestClient.builder()

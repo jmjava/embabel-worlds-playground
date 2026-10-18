@@ -31,7 +31,7 @@ Playwright starts the mock API and UI automatically via `playwright.config.ts` a
 
 ## Playwright: what the fixture console demonstrates
 
-The **fixture console** is the five-screen UI (`ui/` on **8901**) backed by the synthetic **mock CR API** (`mock-api/` on **8900**). Tests prove the demo works **without** Docker, the Worlds appliance, or an LLM key.
+The **fixture console** is the five-screen UI (`ui/` on **8901**) backed by the synthetic **mock catalog API** (`mock-api/` on **8900**). Tests prove the demo works **without** Docker, the Worlds appliance, or an LLM key.
 
 | Test | Behavior demonstrated |
 |------|------------------------|
@@ -46,7 +46,7 @@ The **fixture console** is the five-screen UI (`ui/` on **8901**) backed by the 
 | `the AI toggle falls back to local ranking when the agent is down` | **Use AI Agent** toggle + graceful fallback toast when `:8080` agent is absent |
 | `the category screen explains a missing fixture API` | Error messaging when API unreachable |
 
-Together, these tests document a **Consumer Reports–style buying journey** on synthetic data: catalog browse, preference capture, rated products, side-by-side compare with price trends, and a deterministic buying plan.
+Together, these tests document a **product ratings buying journey** on synthetic data: catalog browse, preference capture, rated products, side-by-side compare with price trends, and a deterministic buying plan.
 
 ---
 
@@ -70,7 +70,7 @@ This validates the **data contract** between the UI, REST controller, and GOAP c
 | `GET /api/products/101/price-history` | Historical prices |
 | `GET /api/search?q=apple` | Keyword search |
 
-These endpoints mirror the operations declared in `realm/apis/cr-mock-api.yml` for Worlds API ingestion.
+These endpoints mirror the operations declared in `realm/apis/mock-catalog-api.yml` for Worlds API ingestion.
 
 ---
 
@@ -84,7 +84,7 @@ Implemented in `agent/` and exercised **at compile time** + **UI fallback path**
 | **`@Action` steps** | `parseIntent`, `searchProducts`, `compareTopCandidates` |
 | **`@AchievesGoal` + `@Export(remote = true)`** | Goal exported as remote service `buyingPlan` |
 | **Structured LLM I/O** | `context.ai().withDefaultLlm().createObject(...)` |
-| **Tool/API integration** | `CrApiClient` calls mock CR REST API |
+| **Tool/API integration** | `CatalogApiClient` calls the mock catalog REST API |
 | **Spring REST invocation** | `AgentPlatform.createAgentProcessFrom()` → `run()` → `resultOfType(BuyingPlan::class.java)` on `POST /api/v1/buying-plan` |
 | **OpenAI starter + MCP server starter** | `pom.xml` dependencies (Embabel 1.5.4-SNAPSHOT) |
 
@@ -94,7 +94,7 @@ Implemented in `agent/` and exercised **at compile time** + **UI fallback path**
 
 ## Embabel Worlds features illustrated (realm spec — design-time)
 
-The `realm/` tree is a **complete, install-ready** realm for **`realm-consumer-reports`**. Automated tests do **not** load it into the appliance; it illustrates Worlds **authoring model** and intended runtime behavior after `embabel realms link`.
+The `realm/` tree is a **complete, install-ready** realm for **`realm-buying-planner`**. Automated tests do **not** load it into the appliance; it illustrates Worlds **authoring model** and intended runtime behavior after `embabel realms link`.
 
 ### Realm manifest (`realm/realm.yml`)
 
@@ -111,11 +111,11 @@ The `realm/` tree is a **complete, install-ready** realm for **`realm-consumer-r
 
 The fixture UI and mock API populate the same conceptual model the graph would hold after ingestion.
 
-### External API binding (`realm/apis/cr-mock-api.yml`)
+### External API binding (`realm/apis/mock-catalog-api.yml`)
 
 | Worlds concept | Illustration |
 |--------------|--------------|
-| **API declaration** | `cr-ratings` → `http://localhost:8900`, OpenAPI-style, no auth |
+| **API declaration** | `mock-catalog` → `http://localhost:8900`, OpenAPI-style, no auth |
 | **Operation catalog** | listCategories, listProductsInCategory, getProduct, getProductPriceHistory, compareProducts, searchProducts |
 
 Maps 1:1 to the FastAPI routes proven by Playwright and curl.
@@ -134,7 +134,7 @@ These mirror queries the fixture UI performs client-side; in Worlds they run aga
 | Worlds concept | Illustration |
 |--------------|--------------|
 | **Generative producer** | `price-trend-summary` — LLM prompt template → `HAS_TREND_SUMMARY` edge on `Product` |
-| **Remote producer** | `similar-products` — calls `cr-ratings.searchProducts`, maps input, creates `SIMILAR_TO` edges |
+| **Remote producer** | `similar-products` — calls `mock-catalog.searchProducts`, maps input, creates `SIMILAR_TO` edges |
 
 ---
 
@@ -146,7 +146,7 @@ From the root `README.md` and project layout:
 |---------|---------------------|
 | **Official Worlds install script** | Documented (`~/embabel/worlds`, console `:4343`) |
 | **Realm checkout linked into appliance** | Documented workflow; not executed in CI |
-| **WireGuard CDK gateway** | Separate `wireguard/` recipe for remote console access (not part of CR POC tests) |
+| **WireGuard CDK gateway** | Separate `wireguard/` recipe for remote console access (not part of buying-planner POC tests) |
 | **Standalone vs appliance** | POC runs fully standalone; realm adds graph persistence, cross-realm queries, and console views when linked |
 
 ---
@@ -170,6 +170,6 @@ Optional: `bash run-demo.sh` (API + UI) or `bash run-demo.sh --with-agent` (adds
 ## Coverage gap checklist (future automation)
 
 - [ ] Integration test profile for GOAP chain with mock LLM or recorded fixtures  
-- [ ] Contract test: OpenAPI spec ↔ `realm/apis/cr-mock-api.yml` operations  
+- [ ] Contract test: OpenAPI spec ↔ `realm/apis/mock-catalog-api.yml` operations  
 - [ ] Worlds appliance smoke after non-interactive setup (realm link + view query)  
 - [ ] Playwright path with agent running and AI toggle **on** (requires secret in CI)

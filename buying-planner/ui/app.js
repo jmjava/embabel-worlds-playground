@@ -112,7 +112,7 @@ async function loadCategories() {
 function renderCategories() {
   const grid = document.getElementById("category-cards");
   if (!state.categories.length) {
-    grid.innerHTML = '<p style="color:var(--cr-text-light)">Could not load categories. Is the API running on port 8900?</p>';
+    grid.innerHTML = '<p style="color:var(--bp-text-light)">Could not load categories. Is the API running on port 8900?</p>';
     return;
   }
   grid.innerHTML = state.categories.map((cat) => {
@@ -198,7 +198,7 @@ document.getElementById("sort-select").addEventListener("change", (e) => sortPro
 function renderProducts() {
   const grid = document.getElementById("product-grid");
   if (!state.products.length) {
-    grid.innerHTML = '<p style="color:var(--cr-text-light)">No products match your filters. Try raising your budget.</p>';
+    grid.innerHTML = '<p style="color:var(--bp-text-light)">No products match your filters. Try raising your budget.</p>';
     updateCompareBar();
     return;
   }
@@ -226,7 +226,7 @@ function renderProducts() {
           <div class="brand">${p.brand}</div>
           <div class="name">${p.name}</div>
           <div class="price">${fmt(p.price)}</div>
-          ${p.cr_verdict ? `<div class="verdict">${p.cr_verdict}</div>` : ""}
+          ${p.verdict ? `<div class="verdict">${p.verdict}</div>` : ""}
         </div>
       </div>
       <div class="product-card-actions">
@@ -322,8 +322,8 @@ function sparklineSVG(entries, width, height) {
     return `${x.toFixed(1)},${y.toFixed(1)}`;
   }).join(" ");
   return `<svg class="sparkline-svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">
-    <polyline fill="none" stroke="var(--cr-red)" stroke-width="2" stroke-linejoin="round" points="${points}"/>
-    <circle cx="${points.split(" ").pop().split(",")[0]}" cy="${points.split(" ").pop().split(",")[1]}" r="3" fill="var(--cr-red)"/>
+    <polyline fill="none" stroke="var(--bp-red)" stroke-width="2" stroke-linejoin="round" points="${points}"/>
+    <circle cx="${points.split(" ").pop().split(",")[0]}" cy="${points.split(" ").pop().split(",")[1]}" r="3" fill="var(--bp-red)"/>
   </svg>`;
 }
 
@@ -468,7 +468,7 @@ document.getElementById("plan-btn").addEventListener("click", async () => {
   goTo(5);
   if (CONFIG.USE_AGENT) {
     document.getElementById("plan-content").innerHTML =
-      '<p style="color:var(--cr-text-light)">⏳ Asking the AI agent for a buying plan…</p>';
+      '<p style="color:var(--bp-text-light)">⏳ Asking the AI agent for a buying plan…</p>';
     try {
       const intent = {
         category: state.selectedCategory ? state.selectedCategory.id : "",

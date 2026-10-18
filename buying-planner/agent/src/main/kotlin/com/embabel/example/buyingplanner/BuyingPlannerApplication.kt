@@ -1,4 +1,4 @@
-package com.embabel.example.crplanner
+package com.embabel.example.buyingplanner
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.context.properties.ConfigurationPropertiesScan
@@ -6,8 +6,8 @@ import org.springframework.boot.runApplication
 
 @SpringBootApplication
 @ConfigurationPropertiesScan
-class CrBuyingPlannerApplication
+class BuyingPlannerApplication
 
 fun main(args: Array<String>) {
-    runApplication<CrBuyingPlannerApplication>(*args)
+    runApplication<BuyingPlannerApplication>(*args)
 }

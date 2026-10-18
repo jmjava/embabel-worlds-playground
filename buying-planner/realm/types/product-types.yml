@@ -1,4 +1,4 @@
-# Domain types for the Consumer Reports realm.
+# Domain types for the buying planner realm.
 #
 # Graph structure:
 #   Category ←[IN_CATEGORY]← Product ←[RATES]← Rating ←[PART_OF]← SubScore
@@ -35,12 +35,12 @@ types:
     userAnchor: false
 
   Rating:
-    description: "Consumer Reports rating for a product"
+    description: "Independent lab rating for a product"
     properties:
       overallScore: { type: integer, required: true, description: "0-100 overall score" }
       pros: { type: "string[]", description: "Positive aspects" }
       cons: { type: "string[]", description: "Negative aspects" }
-      verdict: { type: string, description: "One-sentence CR verdict" }
+      verdict: { type: string, description: "One-sentence summary verdict" }
     relations:
       - target: Product
         name: RATES

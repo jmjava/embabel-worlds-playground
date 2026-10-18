@@ -4,13 +4,13 @@
   "agentCanUpdateSnapshot": true,
   "terminals": [
     {
-      "name": "cr-demo",
-      "description": "Mock CR API (:8900) + fixture UI (:8901). Agent optional via run-demo.sh --with-agent.",
+      "name": "buying-demo",
+      "description": "Mock catalog API (:8900) + fixture UI (:8901). Agent optional via run-demo.sh --with-agent.",
       "command": "bash buying-planner/run-demo.sh"
     }
   ],
   "ports": [
-    { "name": "mock CR API", "port": 8900 },
+    { "name": "mock catalog API", "port": 8900 },
     { "name": "fixture UI", "port": 8901 },
     { "name": "BuyingPlanner agent", "port": 8080 },
     { "name": "Worlds console (appliance)", "port": 4343 }

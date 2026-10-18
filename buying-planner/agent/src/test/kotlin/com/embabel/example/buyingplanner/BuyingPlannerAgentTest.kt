@@ -1,4 +1,4 @@
-package com.embabel.example.crplanner
+package com.embabel.example.buyingplanner
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
@@ -80,7 +80,7 @@ class BuyingPlannerAgentTest {
             topPick = topPick,
             runnerUp = ProductCandidate("2", "Product B", "Brand B", 80.0, 85, "Close second"),
             budgetPick = ProductCandidate("3", "Product C", "Brand C", 50.0, 75, "Good value"),
-            reasoning = "Product A leads in Consumer Reports testing",
+            reasoning = "Product A leads in lab testing for this category",
             comparisonSummary = "A vs B vs C comparison",
             timingAdvice = "Buy now — prices are stable",
             content = "Top pick: Product A. Runner-up: Product B. Budget: Product C.",
