@@ -2,7 +2,7 @@
 # Same automated proof as Cloud Agent / CI (fixture console + domain types).
 set -euo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-PLANNER="${ROOT}/cr-buying-planner"
+PLANNER="${ROOT}/buying-planner"
 
 echo "=== Playwright fixture console ==="
 cd "${PLANNER}"

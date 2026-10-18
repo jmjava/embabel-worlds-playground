@@ -5,7 +5,7 @@
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-PLANNER="${ROOT}/cr-buying-planner"
+PLANNER="${ROOT}/buying-planner"
 AGENT="${PLANNER}/agent"
 MOCK_API="${PLANNER}/mock-api"
 

@@ -1,4 +1,4 @@
-"""CR Buying Planner — Mock API.
+"""Buying Planner — Mock API.
 
 Loads synthetic Consumer-Reports-style ratings from data/seed.json
 and exposes them as a lightweight REST API on port 8900.
@@ -16,7 +16,7 @@ from fastapi.middleware.cors import CORSMiddleware
 DATA_PATH = Path(__file__).resolve().parent / "data" / "seed.json"
 
 app = FastAPI(
-    title="CR Buying Planner — Mock API",
+    title="Buying Planner — Mock API",
     version="0.1.0",
     description="Synthetic product ratings, pricing, and comparison data.",
 )

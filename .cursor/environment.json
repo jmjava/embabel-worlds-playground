@@ -6,7 +6,7 @@
     {
       "name": "cr-demo",
       "description": "Mock CR API (:8900) + fixture UI (:8901). Agent optional via run-demo.sh --with-agent.",
-      "command": "bash cr-buying-planner/run-demo.sh"
+      "command": "bash buying-planner/run-demo.sh"
     }
   ],
   "ports": [

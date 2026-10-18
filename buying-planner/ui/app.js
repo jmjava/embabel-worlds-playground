@@ -1,4 +1,4 @@
-/* CR Buying Planner — click-through demo (vanilla JS) */
+/* Buying Planner — click-through demo (vanilla JS) */
 
 const CONFIG = {
   MOCK_API: "http://localhost:8900",

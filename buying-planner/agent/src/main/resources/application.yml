@@ -6,7 +6,7 @@ cr-api:
 
 spring:
   application:
-    name: cr-buying-planner
+    name: buying-planner
 
 embabel:
   agent:

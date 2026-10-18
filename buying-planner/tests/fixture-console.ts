@@ -1,7 +1,7 @@
 import { test as base, expect, type Locator, type Page } from "@playwright/test";
 
 /**
- * Browser handle for the CR Buying Planner fixture console.
+ * Browser handle for the Buying Planner fixture console.
  *
  * The UI talks to the synthetic catalog in mock-api/data/seed.json. Plans on
  * this console are ranked in the browser, so the suite proves the demo without

@@ -23,12 +23,12 @@ Undo: `docker compose down -v` inside `~/embabel/worlds`, then delete that direc
 
 ## Projects
 
-### CR Buying Planner
+### Buying Planner
 
 A proof-of-concept demonstrating a 3-step GOAP agent that recommends Consumer Reports–rated products. Includes a FastAPI mock API (34 synthetic products), a Kotlin/Embabel agent, a five-screen browser UI, and a complete Worlds realm spec.
 
-See [cr-buying-planner/README.md](cr-buying-planner/README.md) for quick start and architecture details.
+See [buying-planner/README.md](buying-planner/README.md) for quick start and architecture details.
 
-**Proof and feature map:** [PLAYGROUND.md](PLAYGROUND.md) · [cr-buying-planner/TEST-AND-DEMONSTRATION.md](cr-buying-planner/TEST-AND-DEMONSTRATION.md)
+**Proof and feature map:** [PLAYGROUND.md](PLAYGROUND.md) · [buying-planner/TEST-AND-DEMONSTRATION.md](buying-planner/TEST-AND-DEMONSTRATION.md)
 
 **Local dev (same as Cursor Cloud Environment):** `bash .cursor/install.sh` then `bash scripts/verify-local.sh` — see [AGENTS.md](AGENTS.md).

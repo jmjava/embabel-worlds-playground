@@ -1,7 +1,7 @@
 {
-  "name": "cr-buying-planner",
+  "name": "buying-planner",
   "private": true,
-  "description": "Playwright tests for the CR Buying Planner fixture console",
+  "description": "Playwright tests for the Buying Planner fixture console",
   "scripts": {
     "test": "playwright test",
     "test:headed": "playwright test --headed"

@@ -23,7 +23,7 @@ Force Playwright Chromium (matches GitHub Actions when Google Chrome is not inst
 
 ```bash
 PLAYGROUND_INSTALL_CHROMIUM=1 bash .cursor/install.sh
-CI=true npm test   # from cr-buying-planner/
+CI=true npm test   # from buying-planner/
 ```
 
 ### Toolchain (matches Cloud Agent / CI)
@@ -31,17 +31,17 @@ CI=true npm test   # from cr-buying-planner/
 | Tool | Version / notes |
 | --- | --- |
 | Python | 3.10+ with `venv` (mock API on **8900**) |
-| Node.js | 22+ recommended (`npm ci` in `cr-buying-planner/`) |
+| Node.js | 22+ recommended (`npm ci` in `buying-planner/`) |
 | JDK | 21 (Embabel agent Maven module) |
 | Maven | 3.8+ |
 | Browser | Google Chrome locally; Playwright **Chromium** when `CI=true` |
 
-Optional: **`OPENAI_API_KEY`** for `bash cr-buying-planner/run-demo.sh --with-agent`. Worlds appliance is separate — see root [README.md](README.md).
+Optional: **`OPENAI_API_KEY`** for `bash buying-planner/run-demo.sh --with-agent`. Worlds appliance is separate — see root [README.md](README.md).
 
 ### Proof docs
 
 - [PLAYGROUND.md](PLAYGROUND.md) — index
-- [cr-buying-planner/TEST-AND-DEMONSTRATION.md](cr-buying-planner/TEST-AND-DEMONSTRATION.md) — full matrix
+- [buying-planner/TEST-AND-DEMONSTRATION.md](buying-planner/TEST-AND-DEMONSTRATION.md) — full matrix
 
 ### Dashboard sync
 

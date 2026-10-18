@@ -1,4 +1,4 @@
-# CR Buying Planner — Smoke Test Results
+# Buying Planner — Smoke Test Results
 
 **Date:** 2026-10-12
 **Environment:** Ubuntu Linux, Python 3.12.14, JDK 21.0.7, Maven 3.9.12
