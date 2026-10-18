@@ -39,7 +39,9 @@ npm install
 npm test
 ```
 
-Needs Python 3.10+ with `python3-venv` (`apt install python3.12-venv` on Ubuntu) and Google Chrome. Playwright uses the installed Chrome, so a separate browser download is unnecessary. `scripts/serve-mock-api.sh` creates `mock-api/.venv` and starts the API. Playwright starts that script and the UI itself.
+Needs Python 3.10+ with `python3-venv` (`apt install python3.12-venv` on Ubuntu) and Google Chrome locally (CI uses Playwright Chromium). Playwright uses installed Chrome when available. `scripts/serve-mock-api.sh` creates `mock-api/.venv` and starts the API. Playwright starts that script and the UI itself.
+
+Full test matrix and Embabel Worlds feature map: [TEST-AND-DEMONSTRATION.md](TEST-AND-DEMONSTRATION.md).
 
 ## Quick Start
 

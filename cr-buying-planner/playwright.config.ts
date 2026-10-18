@@ -18,7 +18,7 @@ export default defineConfig({
     baseURL: "http://127.0.0.1:8901",
     trace: "on-first-retry",
     ...devices["Desktop Chrome"],
-    channel: "chrome",
+    ...(process.env.CI ? {} : { channel: "chrome" }),
   },
   webServer: [
     {
