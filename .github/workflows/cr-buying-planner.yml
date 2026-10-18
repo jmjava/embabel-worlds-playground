@@ -1,0 +1,55 @@
+name: CR Buying Planner
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "cr-buying-planner/**"
+      - ".github/workflows/cr-buying-planner.yml"
+  pull_request:
+    paths:
+      - "cr-buying-planner/**"
+      - ".github/workflows/cr-buying-planner.yml"
+      - "PLAYGROUND.md"
+
+jobs:
+  agent-unit-tests:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: cr-buying-planner/agent
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+          cache: maven
+      - name: Maven test
+        run: mvn -B test
+
+  fixture-console:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: cr-buying-planner
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: cr-buying-planner/package-lock.json
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Python venv support
+        run: sudo apt-get update && sudo apt-get install -y python3.12-venv
+      - name: Install npm deps
+        run: npm ci
+      - name: Install Playwright Chromium
+        run: npx playwright install chromium
+      - name: Playwright fixture console
+        run: npm test
+        env:
+          CI: "true"
