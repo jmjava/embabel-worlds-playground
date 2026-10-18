@@ -3,7 +3,7 @@
 **Last run:** 2026-10-18 (Cloud Agent VM + local dev re-run)  
 **Environment:** Ubuntu Linux, Python 3.12, OpenJDK 21, Maven 3.8+, Google Chrome or Playwright Chromium (CI)
 
-This document summarizes automated test outcomes for the **CR Buying Planner** POC and maps what each layer demonstrates about **Embabel Agents** and **Embabel Worlds**.
+This document summarizes automated test outcomes for the **Buying Planner** POC and maps what each layer demonstrates about **Embabel Agents** and **Embabel Worlds**.
 
 ---
 
@@ -11,8 +11,8 @@ This document summarizes automated test outcomes for the **CR Buying Planner** P
 
 | Suite | Command | Result |
 |-------|---------|--------|
-| Playwright E2E (fixture console) | `cd cr-buying-planner && npm test` | **10 / 10 passed** (~6–11 s) |
-| Kotlin unit tests (domain types) | `cd cr-buying-planner/agent && mvn test` | **6 / 6 passed** |
+| Playwright E2E (fixture console) | `cd buying-planner && npm test` | **10 / 10 passed** (~6–11 s) |
+| Kotlin unit tests (domain types) | `cd buying-planner/agent && mvn test` | **6 / 6 passed** |
 | Agent compile | `mvn compile` | **SUCCESS** |
 | Mock API smoke (curl) | 7 GET endpoints on `:8900` | **All HTTP 200** (manual / Cloud Agent) |
 
@@ -154,7 +154,7 @@ From the root `README.md` and project layout:
 ## How to re-run everything
 
 ```bash
-cd cr-buying-planner
+cd buying-planner
 npm install
 npm test
 

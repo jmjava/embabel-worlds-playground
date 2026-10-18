@@ -1,4 +1,4 @@
-# CR Buying Planner POC
+# Buying Planner POC
 
 An end-to-end proof-of-concept that uses **Embabel** agents and a **Consumer Reports–style mock API** to guide a user through picking the best product in a category. The POC demonstrates a 3-step GOAP agent flow, a five-screen browser UI, and a ready-to-install Worlds realm spec.
 
@@ -10,7 +10,7 @@ An end-to-end proof-of-concept that uses **Embabel** agents and a **Consumer Rep
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                     CR Buying Planner POC                    │
+│                     Buying Planner POC                    │
 ├─────────────────────────────────────────────────────────────┤
 │  Browser UI (vanilla JS)                        :8901       │
 │  ┌──────────┐ ┌──────────┐ ┌────────┐ ┌───────┐ ┌──────┐  │
@@ -34,7 +34,7 @@ An end-to-end proof-of-concept that uses **Embabel** agents and a **Consumer Rep
 The browser demo is the fixture console: `ui/` on port 8901, reading the synthetic catalog from `mock-api/` on port 8900. Playwright walks that console (category, budget, compare, local buying plan, agent fallback) without Docker, the Worlds appliance, or an API key.
 
 ```bash
-cd cr-buying-planner
+cd buying-planner
 npm install
 npm test
 ```
@@ -49,7 +49,7 @@ Full test matrix and Embabel Worlds feature map: [TEST-AND-DEMONSTRATION.md](TES
 
 ```bash
 # From the repo root:
-cd cr-buying-planner
+cd buying-planner
 
 # Install Python deps (one-time)
 cd mock-api && python3 -m venv .venv && source .venv/bin/activate
@@ -182,7 +182,7 @@ The `realm/` directory contains the complete **`realm-consumer-reports`** spec r
 embabel up
 
 # 2. Link your realm checkouts
-embabel realms link /path/to/embabel-worlds-playground/cr-buying-planner
+embabel realms link /path/to/embabel-worlds-playground/buying-planner
 
 # 3. Open the console
 embabel open     # → http://localhost:4343

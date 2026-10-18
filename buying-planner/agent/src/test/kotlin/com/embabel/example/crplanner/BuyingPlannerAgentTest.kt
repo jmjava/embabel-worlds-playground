@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 
 /**
- * Unit tests for the CR Buying Planner data types.
+ * Unit tests for the Buying Planner data types.
  *
  * These do NOT start a full Spring context because the Embabel agent starter
  * requires an LLM provider (e.g. OpenAI) at startup. Integration tests that

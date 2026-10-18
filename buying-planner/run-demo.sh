@@ -25,7 +25,7 @@ cleanup() {
 }
 trap cleanup EXIT INT TERM
 
-echo "=== CR Buying Planner — Demo ==="
+echo "=== Buying Planner — Demo ==="
 echo ""
 
 # ── 1) Start mock API ────────────────────────────────────────────
