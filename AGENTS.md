@@ -46,3 +46,5 @@ Optional: **`OPENAI_API_KEY`** for `bash buying-planner/run-demo.sh --with-agent
 ### Dashboard sync
 
 If you previously configured the environment only in the Cursor dashboard, commit and merge **`.cursor/environment.json`** so team and Cloud Agents resolve the same install script (repo config overrides personal defaults).
+
+**Refresh the Cloud Build:** Cursor → Cloud Agents → your environment → **Builds** → **Trigger build**. Pushes to `main` also schedule recurring rebuilds when the active Build is stale.
