@@ -29,6 +29,18 @@ An end-to-end proof-of-concept that uses **Embabel** agents and a **Consumer Rep
 └─────────────────────────────────────────────────────────────┘
 ```
 
+## Prove the fixture console
+
+The browser demo is the fixture console: `ui/` on port 8901, reading the synthetic catalog from `mock-api/` on port 8900. Playwright walks that console (category, budget, compare, local buying plan, agent fallback) without Docker, the Worlds appliance, or an API key.
+
+```bash
+cd cr-buying-planner
+npm install
+npm test
+```
+
+Needs Python 3.10+ with `python3-venv` (`apt install python3.12-venv` on Ubuntu) and Google Chrome. Playwright uses the installed Chrome, so a separate browser download is unnecessary. `scripts/serve-mock-api.sh` creates `mock-api/.venv` and starts the API. Playwright starts that script and the UI itself.
+
 ## Quick Start
 
 **Prerequisites:** Python 3.10+, pip
