@@ -1,0 +1,16 @@
+# API declaration for the synthetic ratings mock server.
+# The mock server (mock-api/main.py) implements these operations on port 8900.
+# In production, swap the url for an authenticated partner catalog feed.
+apis:
+  mock-catalog:
+    description: "Synthetic product ratings API"
+    url: http://localhost:8900
+    spec: openapi
+    auth: none
+    operations:
+      - listCategories
+      - listProductsInCategory
+      - getProduct
+      - getProductPriceHistory
+      - compareProducts
+      - searchProducts

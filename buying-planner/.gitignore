@@ -1,0 +1,25 @@
+# Python
+.venv/
+mock-api/.venv/
+mock-api/__pycache__/
+__pycache__/
+*.pyc
+
+# Java/Maven
+agent/target/
+*.class
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# OS
+.DS_Store
+
+# Playwright
+node_modules/
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/

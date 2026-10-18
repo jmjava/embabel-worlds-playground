@@ -1,0 +1,195 @@
+# Buying Planner POC
+
+An end-to-end proof-of-concept that uses **Embabel** agents and a **synthetic ratings mock API** to guide a user through picking the best product in a category. The POC demonstrates a 3-step GOAP agent flow, a five-screen browser UI, and a ready-to-install Worlds realm spec.
+
+> **Note:** All product ratings, scores, verdicts, pros/cons, and price histories in `mock-api/data/seed.json` are **synthetic** fixture data for demos and tests.
+
+---
+
+## Architecture
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                     Buying Planner POC                    │
+├─────────────────────────────────────────────────────────────┤
+│  Browser UI (vanilla JS)                        :8901       │
+│  ┌──────────┐ ┌──────────┐ ┌────────┐ ┌───────┐ ┌──────┐  │
+│  │ Category │→│ Budget & │→│ Rated  │→│Compare│→│ Plan │  │
+│  │ Picker   │ │ Priority │ │Products│ │       │ │      │  │
+│  └──────────┘ └──────────┘ └────────┘ └───────┘ └──────┘  │
+├─────────────────────────────────────────────────────────────┤
+│  BuyingPlannerAgent (Kotlin / Embabel)          :8080       │
+│  parseIntent → searchProducts → compareTopCandidates        │
+├─────────────────────────────────────────────────────────────┤
+│  Mock catalog API (FastAPI)                     :8900       │
+│  34 products · 3 categories · 7 endpoints                   │
+├─────────────────────────────────────────────────────────────┤
+│  Worlds Realm (realm-buying-planner)            future       │
+│  types + apis + views + producers → appliance install       │
+└─────────────────────────────────────────────────────────────┘
+```
+
+## Prove the fixture console
+
+The browser demo is the fixture console: `ui/` on port 8901, reading the synthetic catalog from `mock-api/` on port 8900. Playwright walks that console (category, budget, compare, local buying plan, agent fallback) without Docker, the Worlds appliance, or an API key.
+
+```bash
+cd buying-planner
+npm install
+npm test
+```
+
+Needs Python 3.10+ with `python3-venv` (`apt install python3.12-venv` on Ubuntu) and Google Chrome locally (CI uses Playwright Chromium). Playwright uses installed Chrome when available. `scripts/serve-mock-api.sh` creates `mock-api/.venv` and starts the API. Playwright starts that script and the UI itself.
+
+Full test matrix and Embabel Worlds feature map: [TEST-AND-DEMONSTRATION.md](TEST-AND-DEMONSTRATION.md).
+
+## Quick Start
+
+**Prerequisites:** Python 3.10+, pip
+
+```bash
+# From the repo root:
+cd buying-planner
+
+# Install Python deps (one-time)
+cd mock-api && python3 -m venv .venv && source .venv/bin/activate
+pip install fastapi uvicorn pyyaml
+cd ..
+
+# Run the demo
+bash run-demo.sh
+```
+
+This starts the mock API on **http://localhost:8900** (Swagger docs at `/docs`) and serves the click-through UI on **http://localhost:8901**.
+
+## Components
+
+| Directory | Description |
+|-----------|-------------|
+| `mock-api/` | FastAPI server with 34 synthetic products, 3 categories, and 7 REST endpoints. Data lives in `data/seed.json`. |
+| `agent/` | Kotlin/Embabel `BuyingPlannerAgent` with a 3-step GOAP flow. Built with Maven (`pom.xml`). |
+| `ui/` | Five-screen vanilla-JS browser demo: Category Picker → Budget & Priority → Rated Products → Compare → Plan. |
+| `realm/` | Embabel Worlds realm spec (`realm.yml`, types, apis, views, producers). Ready to install when the appliance is available. |
+| `run-demo.sh` | One-command launcher: starts the mock API and serves the UI. |
+
+## Mock API Endpoints
+
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/api/health` | GET | Health check returning product and category counts |
+| `/api/categories` | GET | List all product categories |
+| `/api/categories/{category_id}/products` | GET | List products in a category (filters: `max_price`, `min_score`, `sort_by`) |
+| `/api/products/{product_id}` | GET | Get a single product with its full rating |
+| `/api/products/{product_id}/price-history` | GET | Get price history entries for a product |
+| `/api/compare?ids=1,2,3` | GET | Side-by-side comparison of multiple products |
+| `/api/search?q=quiet` | GET | Keyword search across names, brands, pros, cons, and verdicts |
+
+## Agent Architecture
+
+The `BuyingPlannerAgent` implements a 3-step **GOAP** (Goal-Oriented Action Planning) flow using Embabel's `@Action` and `@AchievesGoal` annotations:
+
+1. **`parseIntent`** — Takes raw `UserInput` and uses the LLM to extract a structured `BuyingIntent` (category, budget, priorities, requirements).
+2. **`searchProducts`** — Fetches products from the mock API, then asks the LLM to score and rank them against the user's priorities, producing a `ProductCandidateList`.
+3. **`compareTopCandidates`** — Gathers full details, price histories, and comparison data for the top candidates, then generates a complete `BuyingPlan` with top pick, runner-up, budget pick, reasoning, comparison summary, and timing advice.
+
+The goal is exported as a remote service (`buyingPlan`) that accepts `UserInput` and produces a `BuyingPlan`.
+
+## Worlds Realm
+
+The `realm/` directory contains the complete realm spec for **`realm-buying-planner`**, ready to install when the Embabel Worlds appliance is available:
+
+- **`realm.yml`** — Manifest declaring the realm name, version, author, and exports.
+- **`types/product-types.yml`** — Seven domain types and their relationships (see Data Model below).
+- **`apis/mock-catalog-api.yml`** — Declares the mock API connection and its six operations.
+- **`views/buying-views.yml`** — Five Cypher-backed views for common queries (top-rated, budget picks, price trends, comparisons, buying history).
+- **`producers/product-producers.yml`** — Two producers: a generative price-trend summarizer and a remote similar-products finder.
+
+## Data Model
+
+The realm defines **7 types** connected by graph relationships:
+
+| Type | Description | Key Relations |
+|------|-------------|---------------|
+| **Category** | Product category with rating priorities (e.g. washing-machines) | — |
+| **Product** | A product with pricing and brand info | `IN_CATEGORY` → Category |
+| **Rating** | Overall score (0–100) with pros, cons, verdict | `RATES` → Product |
+| **SubScore** | A sub-dimension score (e.g. reliability: 85) | `PART_OF` → Rating |
+| **PriceEntry** | A historical price point with date and retailer | `PRICE_FOR` → Product |
+| **BuyingIntent** | User's buying intent per session (user anchor) | — |
+| **BuyingPlan** | Generated plan with recommendations (user anchor) | `PLAN_FOR` → BuyingIntent, `TOP_PICK` / `RUNNER_UP` / `BUDGET_PICK` → Product |
+
+`BuyingIntent` and `BuyingPlan` are **user anchors** — they are created per-user, per-session.
+
+## Next Steps
+
+- **Cross-realm queries** — combine catalog ratings with other realms (e.g. warranty data, retailer inventory)
+- **Add more categories** — extend `seed.json` with TVs, refrigerators, headphones, etc.
+- **Partner catalog integration** — swap the mock API for an authenticated production ratings feed
+- **Price alert producer** — add a producer that monitors price drops and notifies users
+
+## Running with the AI Agent
+
+The BuyingPlannerAgent uses an LLM (via OpenAI) to understand your request, score products against your priorities, and generate a personalised buying plan.
+
+**Prerequisites:** JDK 21, Maven, `OPENAI_API_KEY`
+
+```bash
+# Set your OpenAI key
+export OPENAI_API_KEY=sk-...
+
+# Run everything (mock API + agent + UI)
+bash run-demo.sh --with-agent
+```
+
+When the agent is running, flip the **"Use AI Agent"** toggle in the top-right corner of the UI. The Buying Plan screen (step 5) will POST to the agent instead of computing a plan client-side. If the agent is unreachable, the UI falls back gracefully to local ranking with a toast notification.
+
+**Without the agent** (default): `bash run-demo.sh` starts only the mock API and UI. The plan screen uses client-side scoring and ranking — no LLM required.
+
+### Agent REST Endpoint
+
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/api/v1/buying-plan` | POST | Generate a buying plan via the Embabel agent |
+
+Request body:
+```json
+{
+  "content": "I'm looking for a laptop under $1500, prioritising battery life and portability"
+}
+```
+
+Response: a `BuyingPlan` JSON with `topPick`, `runnerUp`, `budgetPick`, `reasoning`, `comparisonSummary`, `timingAdvice`, and `content`.
+
+> **Note:** The controller uses `AgentPlatform.createAgentProcessFrom()` to create and run the agent process. The pattern is `createAgentProcessFrom(agent, ProcessOptions.DEFAULT, userInput)` → `process.run()` → `process.resultOfType(BuyingPlan::class.java)`. This is the standard low-level invocation pattern for Embabel agents.
+
+## Worlds Integration
+
+The `realm/` directory contains the complete **`realm-buying-planner`** spec ready for the Embabel Worlds appliance.
+
+### Current Status
+
+| Component | Status |
+|-----------|--------|
+| Realm YAML spec (`realm.yml`, types, apis, views, producers) | ✅ Complete |
+| Embabel Worlds appliance installed (`~/embabel/worlds`) | ✅ Installed |
+| Appliance running (`embabel up`) | ⏳ Requires interactive setup (account + API key) |
+| Realm registered | ⏳ Pending — run after appliance setup |
+
+### Setup Steps
+
+```bash
+# 1. Start the appliance (interactive — asks for account + API key)
+embabel up
+
+# 2. Link your realm checkouts
+embabel realms link /path/to/embabel-worlds-playground/buying-planner
+
+# 3. Open the console
+embabel open     # → http://localhost:4343
+```
+
+Once the appliance is running, the realm types, views, and producers become live in the knowledge graph. The mock API products are ingested via the declared API connection.
+
+### What Works Without the Appliance
+
+Everything except realm registration: the mock API, the agent, and the UI all run standalone. The realm spec is a ready-to-install artifact — it adds graph persistence, cross-realm queries, and the Worlds console views on top of the existing demo.

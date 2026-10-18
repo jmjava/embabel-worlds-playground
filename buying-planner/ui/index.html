@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buying Planner</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="top-bar">
+    <div class="top-bar-inner">
+      <div class="logo">
+        <span class="logo-icon">★</span>
+        <span class="logo-text">Buying Planner</span>
+      </div>
+      <nav id="breadcrumb" class="breadcrumb" aria-label="Progress"></nav>
+      <label class="agent-toggle" title="Enable AI agent (requires agent running on :8080 with OPENAI_API_KEY)">
+        <input type="checkbox" id="agent-toggle-cb">
+        <span class="agent-toggle-slider"></span>
+        <span class="agent-toggle-label">Use AI Agent</span>
+      </label>
+    </div>
+  </header>
+
+  <!-- Toast for notifications -->
+  <div id="toast" class="toast hidden"></div>
+
+  <main id="app">
+    <!-- Screen 1: Category Picker -->
+    <section id="screen-category" class="screen active" data-step="1">
+      <div class="screen-content">
+        <h1>What are you shopping for?</h1>
+        <p class="subtitle">Choose a category to see expert ratings and find the best products for your needs.</p>
+        <div id="category-cards" class="category-grid"></div>
+      </div>
+    </section>
+
+    <!-- Screen 2: Budget & Priorities -->
+    <section id="screen-preferences" class="screen" data-step="2">
+      <div class="screen-content">
+        <button class="back-btn" data-target="1">← Back</button>
+        <h1>Set your preferences</h1>
+        <p class="subtitle" id="pref-subtitle"></p>
+
+        <div class="pref-card">
+          <label class="pref-label">Budget</label>
+          <div class="slider-row">
+            <input type="range" id="budget-slider" min="0" max="3000" step="50" value="3000">
+            <span id="budget-value" class="slider-value">$3,000</span>
+          </div>
+        </div>
+
+        <div class="pref-card">
+          <label class="pref-label">Priorities</label>
+          <p class="pref-hint">Select what matters most to you</p>
+          <div id="priority-checks" class="priority-grid"></div>
+        </div>
+
+        <div class="pref-card">
+          <label class="pref-label" for="extra-input">Also consider</label>
+          <input type="text" id="extra-input" class="text-input" placeholder="e.g. fits in a small space, good for allergies…">
+        </div>
+
+        <button id="find-products-btn" class="primary-btn">Find Products →</button>
+      </div>
+    </section>
+
+    <!-- Screen 3: Rated Products -->
+    <section id="screen-products" class="screen" data-step="3">
+      <div class="screen-content wide">
+        <button class="back-btn" data-target="2">← Back</button>
+        <div class="products-header">
+          <h1 id="products-title">Top Rated</h1>
+          <div class="sort-row">
+            <label for="sort-select">Sort by</label>
+            <select id="sort-select">
+              <option value="score">Score</option>
+              <option value="price-asc">Price: Low → High</option>
+              <option value="price-desc">Price: High → Low</option>
+              <option value="name">Name</option>
+            </select>
+          </div>
+        </div>
+        <div id="product-grid" class="product-grid"></div>
+        <div id="compare-bar" class="compare-bar hidden">
+          <button id="compare-btn" class="primary-btn">Compare Selected (<span id="compare-count">0</span>)</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Screen 4: Compare -->
+    <section id="screen-compare" class="screen" data-step="4">
+      <div class="screen-content wide">
+        <button class="back-btn" data-target="3">← Back</button>
+        <h1>Head to Head</h1>
+        <div id="compare-table" class="compare-table"></div>
+        <button id="plan-btn" class="primary-btn">Generate Buying Plan →</button>
+      </div>
+    </section>
+
+    <!-- Screen 5: Buying Plan -->
+    <section id="screen-plan" class="screen" data-step="5">
+      <div class="screen-content">
+        <button class="back-btn" data-target="4">← Back</button>
+        <h1>Your Buying Plan</h1>
+        <div id="plan-content" class="plan-content"></div>
+        <button id="restart-btn" class="secondary-btn">Start Over</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bottom-bar">
+    <p>Buying Planner — Demo &middot; Data is synthetic</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

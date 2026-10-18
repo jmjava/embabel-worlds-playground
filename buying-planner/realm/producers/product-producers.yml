@@ -1,0 +1,25 @@
+# Producers create derived knowledge graph edges from existing data.
+#
+# - generative: uses an LLM prompt template to synthesize new information
+# - remote: calls an API operation with mapped inputs
+#
+producers:
+  price-trend-summary:
+    type: generative
+    description: "AI-generated price trend summary for a product"
+    targetType: Product
+    edgeType: HAS_TREND_SUMMARY
+    resolveVia: |
+      Given the price history for {{name}} ({{brand}}):
+      {{priceHistory}}
+      Write a 1-sentence summary of the pricing trend and best time to buy.
+
+  similar-products:
+    type: remote
+    description: "Products similar to this one by score and price range"
+    targetType: Product
+    edgeType: SIMILAR_TO
+    api: mock-catalog
+    operation: searchProducts
+    mapInput: |
+      { "q": "{{brand}} {{name}}" }

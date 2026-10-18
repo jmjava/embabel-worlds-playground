@@ -1,0 +1,67 @@
+# Cypher-backed views for the Worlds console.
+# Each view declares parameters and a Cypher query that runs against the
+# realm's Neo4j graph. The optional ai.hint steers LLM-assisted exploration.
+views:
+  top-rated-by-category:
+    description: "Top rated products in a category"
+    parameters:
+      categoryId: { type: string, required: true }
+      limit: { type: integer, default: 10 }
+    cypher: |
+      MATCH (p:Product)-[:IN_CATEGORY]->(c:Category {id: $categoryId})
+      MATCH (r:Rating)-[:RATES]->(p)
+      RETURN p.name AS name, p.brand AS brand, p.price AS price,
+             r.overallScore AS score, r.verdict AS verdict
+      ORDER BY r.overallScore DESC
+      LIMIT $limit
+
+  budget-picks:
+    description: "Best value products under a budget"
+    parameters:
+      categoryId: { type: string, required: true }
+      maxPrice: { type: number, required: true }
+    cypher: |
+      MATCH (p:Product)-[:IN_CATEGORY]->(c:Category {id: $categoryId})
+      WHERE p.price <= $maxPrice
+      MATCH (r:Rating)-[:RATES]->(p)
+      WITH p, r, r.overallScore / p.price * 100 AS valueScore
+      RETURN p.name AS name, p.brand AS brand, p.price AS price,
+             r.overallScore AS score, round(valueScore, 2) AS valueScore
+      ORDER BY valueScore DESC
+      LIMIT 5
+
+  price-trend:
+    description: "Price history for a product"
+    parameters:
+      productId: { type: string, required: true }
+    cypher: |
+      MATCH (pe:PriceEntry)-[:PRICE_FOR]->(p:Product {id: $productId})
+      RETURN pe.date AS date, pe.price AS price, pe.retailer AS retailer
+      ORDER BY pe.date ASC
+
+  compare-products:
+    description: "Side-by-side comparison with sub-scores"
+    parameters:
+      productIds: { type: "string[]", required: true }
+    cypher: |
+      MATCH (p:Product) WHERE p.id IN $productIds
+      MATCH (r:Rating)-[:RATES]->(p)
+      OPTIONAL MATCH (ss:SubScore)-[:PART_OF]->(r)
+      RETURN p.name AS name, p.brand AS brand, p.price AS price,
+             r.overallScore AS score, r.verdict AS verdict,
+             collect({dimension: ss.dimension, score: ss.score}) AS subScores
+      ORDER BY r.overallScore DESC
+
+  user-buying-history:
+    description: "A user's past buying plans"
+    parameters: {}
+    ai:
+      hint: "Show recent buying plans for this user with their chosen products"
+    cypher: |
+      MATCH (bp:BuyingPlan)-[:PLAN_FOR]->(bi:BuyingIntent)
+      MATCH (bp)-[:TOP_PICK]->(top:Product)
+      OPTIONAL MATCH (bp)-[:RUNNER_UP]->(runner:Product)
+      OPTIONAL MATCH (bp)-[:BUDGET_PICK]->(budget:Product)
+      RETURN bi.category AS category, bi.maxBudget AS budget,
+             top.name AS topPick, runner.name AS runnerUp,
+             budget.name AS budgetPick, bp.reasoning AS reasoning
