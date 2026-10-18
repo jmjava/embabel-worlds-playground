@@ -4,6 +4,8 @@ A local playground for [Embabel Worlds](https://worlds.embabel.com).
 
 The appliance itself is installed by the official script into `~/embabel/worlds`. This repository is the place for realms, recipes, and experiments that point at that install.
 
+[PLAYGROUND.md](PLAYGROUND.md) records what the CR Buying Planner fixture tests prove, and which Worlds features (realm graph, views, producers, and the GOAP agent) the playground explores.
+
 ## Install Worlds
 
 Read the script first, then run it:
