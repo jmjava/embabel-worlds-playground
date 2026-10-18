@@ -4,6 +4,15 @@ This repository holds **realms and experiments** for [Embabel Worlds](https://wo
 
 **Canonical test and feature map:** [cr-buying-planner/TEST-AND-DEMONSTRATION.md](cr-buying-planner/TEST-AND-DEMONSTRATION.md)
 
+## Local setup (matches Cloud Environment)
+
+```bash
+bash .cursor/install.sh
+bash scripts/verify-local.sh
+```
+
+Details: [AGENTS.md](AGENTS.md).
+
 ## Verified automatically (2026-10-18)
 
 | Suite | Command | Result |

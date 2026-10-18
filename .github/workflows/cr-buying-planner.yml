@@ -10,7 +10,10 @@ on:
     paths:
       - "cr-buying-planner/**"
       - ".github/workflows/cr-buying-planner.yml"
+      - ".cursor/**"
+      - "scripts/verify-local.sh"
       - "PLAYGROUND.md"
+      - "AGENTS.md"
 
 jobs:
   agent-unit-tests:
