@@ -59,4 +59,4 @@ pre-commit install
 pre-commit run --all-files   # optional smoke
 ```
 
-Commits are blocked if ggshield finds API keys, tokens, or private keys in staged changes. GitHub also reports **GitGuardian Security Checks** on pushes/PRs when the app is enabled on the repository.
+Commits are blocked if ggshield finds API keys, tokens, or private keys in staged changes. On the public GitHub repo, enable **Secret scanning** and **Push protection** under Settings → Code security and analysis. Optionally install the **GitGuardian** GitHub App for PR checks (same ggshield engine).

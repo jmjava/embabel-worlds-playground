@@ -1,6 +1,6 @@
 # embabel-worlds-playground
 
-A local playground for [Embabel Worlds](https://worlds.embabel.com).
+A local playground for [Embabel Worlds](https://worlds.embabel.com). Licensed under [MIT](LICENSE).
 
 The appliance itself is installed by the official script into `~/embabel/worlds`. This repository is the place for realms, recipes, and experiments that point at that install.
 
