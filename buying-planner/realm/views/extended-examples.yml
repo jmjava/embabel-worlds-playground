@@ -1,0 +1,84 @@
+# Optional Cypher views for learning and demos.
+# Safe to keep in-repo: Worlds loads view YAML from this directory when the realm
+# is linked. Remove or rename entries you do not want in the console.
+#
+# See ../CYPHER-CHEATSHEET.md for clause reference and copy-paste snippets.
+
+views:
+  subscore-leaders:
+    description: "Products strong on one rating dimension (e.g. battery_life)"
+    parameters:
+      categoryId: { type: string, required: true }
+      dimension: { type: string, required: true }
+      minScore: { type: integer, default: 80 }
+      limit: { type: integer, default: 10 }
+    ai:
+      hint: "Find products in a category that excel on a single sub-score dimension"
+    cypher: |
+      MATCH (p:Product)-[:IN_CATEGORY]->(c:Category {id: $categoryId})
+      MATCH (r:Rating)-[:RATES]->(p)
+      MATCH (ss:SubScore)-[:PART_OF]->(r)
+      WHERE ss.dimension = $dimension AND ss.score >= $minScore
+      RETURN p.name AS name, p.brand AS brand, p.price AS price,
+             r.overallScore AS overall, ss.score AS dimensionScore
+      ORDER BY ss.score DESC, r.overallScore DESC
+      LIMIT $limit
+
+  cheapest-above-score:
+    description: "Lowest price among products meeting a minimum overall score"
+    parameters:
+      categoryId: { type: string, required: true }
+      minOverall: { type: integer, default: 85 }
+    cypher: |
+      MATCH (p:Product)-[:IN_CATEGORY]->(c:Category {id: $categoryId})
+      MATCH (r:Rating)-[:RATES]->(p)
+      WHERE r.overallScore >= $minOverall
+      WITH p, r ORDER BY p.price ASC
+      RETURN p.name AS name, p.brand AS brand, p.price AS price,
+             r.overallScore AS score
+      LIMIT 1
+
+  brand-leaderboard:
+    description: "Average rating score by brand within a category"
+    parameters:
+      categoryId: { type: string, required: true }
+      minProducts: { type: integer, default: 1 }
+    cypher: |
+      MATCH (p:Product)-[:IN_CATEGORY]->(c:Category {id: $categoryId})
+      MATCH (r:Rating)-[:RATES]->(p)
+      WITH p.brand AS brand, avg(r.overallScore) AS avgScore, count(p) AS productCount
+      WHERE productCount >= $minProducts
+      RETURN brand, round(avgScore, 1) AS avgScore, productCount
+      ORDER BY avgScore DESC
+
+  plans-that-picked-product:
+    description: "Buying plans that chose a given product as top pick"
+    parameters:
+      productId: { type: string, required: true }
+    ai:
+      hint: "Show session history where this product was the top recommendation"
+    cypher: |
+      MATCH (p:Product {id: $productId})<-[:TOP_PICK]-(bp:BuyingPlan)-[:PLAN_FOR]->(bi:BuyingIntent)
+      RETURN bi.category AS category, bi.maxBudget AS budget,
+             bp.reasoning AS reasoning, bp.timingAdvice AS timing
+
+  similar-via-producer:
+    description: "Products linked by the similar-products producer (SIMILAR_TO)"
+    parameters:
+      productId: { type: string, required: true }
+      limit: { type: integer, default: 5 }
+    cypher: |
+      MATCH (p:Product {id: $productId})-[:SIMILAR_TO]->(other:Product)
+      MATCH (r:Rating)-[:RATES]->(other)
+      RETURN other.name AS name, other.brand AS brand, other.price AS price,
+             r.overallScore AS score
+      ORDER BY score DESC
+      LIMIT $limit
+
+  graph-node-counts:
+    description: "Sanity check — count nodes by label after API ingestion"
+    parameters: {}
+    cypher: |
+      MATCH (n)
+      RETURN labels(n)[0] AS label, count(*) AS count
+      ORDER BY count DESC

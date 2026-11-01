@@ -36,5 +36,6 @@ The Playwright suite is the **fixture console**: UI on port **8901**, mock API o
 | Path | Role |
 | --- | --- |
 | [buying-planner/](buying-planner/) | Mock API, UI, agent, realm YAML, Playwright proof |
+| [buying-planner/realm/CYPHER-CHEATSHEET.md](buying-planner/realm/CYPHER-CHEATSHEET.md) | Cypher cheat sheet + extended view examples for Worlds |
 | [wireguard/](wireguard/) | Optional CDK tunnel so guests reach the Worlds console on this host |
 | Root [README.md](README.md) | Official Worlds install script and project index |
