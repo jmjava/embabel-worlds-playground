@@ -102,6 +102,8 @@ The `realm/` directory contains the complete realm spec for **`realm-buying-plan
 - **`types/product-types.yml`** — Seven domain types and their relationships (see Data Model below).
 - **`apis/mock-catalog-api.yml`** — Declares the mock API connection and its six operations.
 - **`views/buying-views.yml`** — Five Cypher-backed views for common queries (top-rated, budget picks, price trends, comparisons, buying history).
+- **`realm/CYPHER-CHEATSHEET.md`** — Cypher quick reference, schema diagram, and extended query patterns for authoring views.
+- **`views/extended-examples.yml`** — Optional extra views (sub-score leaders, brand leaderboard, similar products, etc.).
 - **`producers/product-producers.yml`** — Two producers: a generative price-trend summarizer and a remote similar-products finder.
 
 ## Data Model
